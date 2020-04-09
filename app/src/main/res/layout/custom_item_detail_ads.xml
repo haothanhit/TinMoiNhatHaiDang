@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view_item_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        ads:adSize="MEDIUM_RECTANGLE"
+        ads:adUnitId="@string/ad_banner" />
+
+    <ImageView
+        android:id="@+id/img_detail_ads"
+        android:layout_width="@dimen/dimen320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ad_view_item_ads"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dimen8dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txt_detail_ads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ad_view_item_ads"
+        android:layout_margin="@dimen/dimen8dp"
+        android:lineSpacingExtra="@dimen/dimen5dp"
+        android:visibility="gone" />
+</RelativeLayout>

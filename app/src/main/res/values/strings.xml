@@ -4,7 +4,7 @@
 
 
     <!--Id test Ads-->
-    <string name="ad_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_banner">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ad_full_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="ad_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="tin_tuc">Tin tức</string>

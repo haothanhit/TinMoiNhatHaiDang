@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.haidang.tinmoinhat.R
+import com.haidang.tinmoinhat.common.adapter.ViewPagerAdapter
 import com.haidang.tinmoinhat.common.base.BaseFragment
+import com.haidang.tinmoinhat.common.global.Constants.Companion.PAGE_NUMBER
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: BaseFragment() {
+    var adapter: ViewPagerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +29,16 @@ class HomeFragment: BaseFragment() {
     }
 
     private fun initView() {
+        setupViewPager()
+
+    }
+
+    private fun setupViewPager() {
+        adapter = ViewPagerAdapter(childFragmentManager!!) //viewpager
+        viewPager.adapter = adapter
+        viewPager.setOffscreenPageLimit(PAGE_NUMBER)
+        tabLayout.setupWithViewPager(viewPager)
+
 
     }
 
