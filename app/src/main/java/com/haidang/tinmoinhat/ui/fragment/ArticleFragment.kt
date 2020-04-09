@@ -83,13 +83,7 @@ class ArticleFragment : BaseFragment() {
             object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?
                 ) {
-                    Handler().postDelayed(Runnable {
-                        Toast.makeText(
-                            view!!.context, "Loading More ..."+page,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        getData(page.toString())
-                    }, 1500)
+                    getData(page.toString())
                 }
             }
               //add Listener
@@ -99,7 +93,7 @@ class ArticleFragment : BaseFragment() {
     }
    fun  getData(page:String){
        val request = APIClient.getClient(APIInterface::class.java)
-       val call = request.getNews(tabID.toString(), page)
+       val call = request.getArticle(tabID.toString(), page)
        Log.d(TAG, call.request().url.toString())
 
        call.enqueue(object : Callback<ArrayList<ModelArticle>> {
@@ -107,7 +101,7 @@ class ArticleFragment : BaseFragment() {
            {
                if(response.isSuccessful &&response.body()!=null){
                    if(mAdaper==null) {
-                       mAdaper=AdapterMain(response.body()!!)
+                       mAdaper=AdapterMain(response.body()!!,activity!!)
                        rcvArticle.adapter = mAdaper
                    }else{
                        mAdaper!!.addData(response.body()!!)

@@ -1,12 +1,16 @@
 package com.haidang.tinmoinhat.common.adapter
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
+import com.google.gson.Gson
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.abstractViewHolder.BaseViewHolder
 import com.haidang.tinmoinhat.common.model.ModelArticle
@@ -15,7 +19,7 @@ import kotlinx.android.synthetic.main.custom_item_recycler_view_ads.view.*
 import kotlinx.android.synthetic.main.custom_item_recycler_view_main.view.*
 
 
-class AdapterMain(val arrArticle: ArrayList<ModelArticle>) :
+class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
     private val VIEW_ITEM = 1
     private val VIEW_ADS = 2
@@ -36,12 +40,22 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>) :
         override fun bind(item: ModelArticle) {
             itemView.txt_title_item_main.text = item?.title
             itemView.txt_source_item_main.text = item?.source
-            Glide.with(itemView.context).load(item?.thumb).placeholder(R.drawable.img_place_holder)
+            Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main)
             itemView.card_view_item.setOnClickListener { //on click
-                val intent = Intent(itemView.context, DetailActivity::class.java)
+                //save relate
+                val appSharedPrefs: SharedPreferences =
+                    activity.getSharedPreferences("relate", Context.MODE_PRIVATE)
+                val prefsEditor = appSharedPrefs.edit()
+                val gson = Gson()
+                val json = gson.toJson(arrArticle)
+                prefsEditor.putString("relate", json)
+                prefsEditor.commit()
+                prefsEditor.apply()
+
+                val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)
-                itemView.context.startActivity(intent)
+                activity.startActivity(intent)
 
             }
 
@@ -54,12 +68,12 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>) :
             itemView.ad_view_main_ads.loadAd(adRequest)
             itemView.txt_title_item_main_ads.text = item?.title
             itemView.txt_source_item_main_ads.text = item?.source
-            Glide.with(itemView.context).load(item?.thumb).placeholder(R.drawable.img_place_holder)
+            Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main_ads)
             itemView.card_view_item_ads.setOnClickListener {  //on click
-                val intent = Intent(itemView.context, DetailActivity::class.java)
+                val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)
-                itemView.context.startActivity(intent)
+                activity.startActivity(intent)
 
             }
 

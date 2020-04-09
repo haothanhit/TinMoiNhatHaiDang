@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+   >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen50dp"
+        android:layout_height="30dp"
       >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen50dp"
-          >
+            android:layout_height="30dp"
+         >
 
             <TextView
                 android:id="@+id/text_title"
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="20dp" />
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -39,8 +39,9 @@
     <ScrollView
         android:id="@+id/scroll_relate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/appbar"
+        android:alpha="1"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -50,7 +51,7 @@
             <FrameLayout
                 android:id="@+id/frame_video"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen180dp"
+                android:layout_height="180dp"
                 android:visibility="gone">
 
                 <com.universalvideoview.UniversalVideoView
@@ -86,53 +87,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/frame_video"
-                tools:visibility="visible"
                 android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <WebView
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_alignParentTop="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/webView1"/>
+
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_below="@+id/webView1"
                         android:id="@+id/recycler_view_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false" />
-                    <WebView
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_below="@+id/recycler_view_details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/webView2"/>
-                    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/adView_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/webView2"
+                        android:layout_below="@+id/recycler_view_details"
                         android:descendantFocusability="blocksDescendants"
                         ads:adSize="MEDIUM_RECTANGLE"
                         ads:adUnitId="@string/ad_banner" />
 
                     <RelativeLayout
                         android:id="@+id/relative_relate"
-                        android:layout_below="@id/adView_detail"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/adView_detail">
 
                         <View
                             android:id="@+id/line"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen1dp"
-                            android:layout_marginTop="@dimen/dimen10dp"
-                            android:layout_marginBottom="@dimen/dimen10dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="#414141" />
 
                         <TextView
@@ -140,44 +128,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/line"
-                            android:layout_marginLeft="@dimen/dimen8dp"
-                            android:layout_marginBottom="@dimen/dimen8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="8dp"
                             android:gravity="center"
-                            android:text="Xem Thêm"
-                            android:textSize="@dimen/text_size_25"
+                            android:text="Nội Dung Khác"
+                            android:textSize="25dp"
                             android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
+
                             android:id="@+id/recycler_view_relate"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_below="@id/txt_tin_khac"
-                            android:nestedScrollingEnabled="false"
-                            android:layout_marginBottom="@dimen/dimen5dp"/>
-                        <com.google.android.gms.ads.AdView
-                            xmlns:ads="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/ad_View_End"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/recycler_view_relate"
-                            android:layout_centerHorizontal="true"
-                            android:descendantFocusability="blocksDescendants"
-                            ads:adSize="SMART_BANNER"
-                            ads:adUnitId="@string/ad_banner">
+                            android:layout_below="@id/txt_tin_khac"
+                            android:nestedScrollingEnabled="false">
 
-                        </com.google.android.gms.ads.AdView>
+                        </androidx.recyclerview.widget.RecyclerView>
                     </RelativeLayout>
                 </RelativeLayout>
             </FrameLayout>
         </RelativeLayout>
     </ScrollView>
-    <!--    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-    <!--        android:id="@+id/adView_detail_bottom"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:descendantFocusability="blocksDescendants"-->
-    <!--        ads:adSize="BANNER"-->
-    <!--        ads:adUnitId="@string/ad_banner" />-->
-
 </RelativeLayout>

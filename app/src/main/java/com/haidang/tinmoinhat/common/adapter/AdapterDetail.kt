@@ -15,7 +15,7 @@ import com.haidang.tinmoinhat.common.model.ModelContent
 import kotlinx.android.synthetic.main.custom_item_detail.view.*
 import kotlinx.android.synthetic.main.custom_item_detail_ads.view.*
 
-class AdapterDetail(val arrContent: ArrayList<ModelContent>) :
+class AdapterDetail (val arrContent: ArrayList<ModelContent>) :
     RecyclerView.Adapter<BaseViewHolderDetail<*>>() {
     private val VIEW_ITEM = 1
     private val VIEW_ADS = 2
@@ -37,36 +37,23 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>) :
     inner class MyViewHolder(itemView: View) : BaseViewHolderDetail<ModelContent>(itemView) {
         override fun bind(item: ModelContent, pos: Int) {
             if (item?.text.equals("")) {
-                if (!item?.img.equals("") && item?.link.equals("")) {
+                if (!item?.img.equals("")) {
                    itemView.img_detail.visibility=View.VISIBLE
                     itemView.txt_detail.visibility=View.GONE
                     Glide.with(itemView.context).load(item?.img).into((itemView.img_detail))
 
-                } else if (!item?.img.equals("") && !item?.link.equals("")) {
-                     itemView.img_banner.visibility=View.VISIBLE
-                    itemView.img_detail.visibility=View.GONE
-                    itemView.txt_detail.visibility=View.GONE
-                    Glide.with(itemView.context).load(item?.img).into((itemView.img_banner))
-                    itemView.img_banner.setOnClickListener{
-                        var url: String = item?.link!!
-                        if (!url.startsWith("http://") && !url.startsWith("https://")) url =
-                            "http://$url"
-                        val browserIntent =
-                            Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                                itemView.context.startActivity(browserIntent)
-                    }
                 }
 
             }
 
             if(item?.img.equals("")){
-                itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_20)
+              //  itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_20)
                 if(pos==0){ // set title
-                    itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_26)
+                  //  itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_26)
                     itemView.txt_detail.typeface= Typeface.DEFAULT_BOLD
                 }
                 if(pos==1){ // set source
-                    itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_22)
+                   // itemView.txt_detail.textSize=itemView.context.resources.getDimension(R.dimen.text_size_22)
                 }
                 if(pos==arrContent.size-1){ // set author
                     itemView.txt_detail.typeface= Typeface.DEFAULT_BOLD
