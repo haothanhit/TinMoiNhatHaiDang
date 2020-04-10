@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="blocksDescendants"
-        ads:adSize="MEDIUM_RECTANGLE"
+        ads:adSize="LARGE_BANNER"
         ads:adUnitId="@string/ad_banner"/>
 
     <androidx.cardview.widget.CardView

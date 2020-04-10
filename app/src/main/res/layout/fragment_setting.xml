@@ -16,7 +16,6 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:id="@+id/tvTitle"
-            android:textColor="@color/black"
             android:textSize="@dimen/text_size_24"
             />
     </RelativeLayout>
@@ -38,7 +37,6 @@
             android:layout_gravity="center"
             android:text="@string/danh_gia_chung_toi"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -69,7 +67,6 @@
             android:layout_gravity="center"
             android:text="@string/chia_se_voi_ban_be"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -98,7 +95,6 @@
             android:layout_gravity="center"
             android:text="@string/gop_y"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -111,7 +107,63 @@
         android:layout_marginRight="@dimen/dimen10dp"/>
     <LinearLayout
         android:padding="@dimen/dimen5dp"
-        android:id="@+id/btnDeleteAllData"
+        android:id="@+id/btnChangeThemeByTime"
+        android:layout_margin="@dimen/dimen10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginLeft="@dimen/dimen5dp"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:src="@drawable/ic_bottom_news"/>
+        <TextView
+            android:layout_marginLeft="@dimen/dimen15dp"
+            android:layout_gravity="center"
+            android:text="@string/doi_theme_theo_khung_gio"
+            android:textSize="@dimen/text_size_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <Switch
+            android:id="@+id/toggle_by_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="@dimen/dimen5dp"
+        android:id="@+id/btnChangeDarkLight"
+        android:layout_margin="@dimen/dimen10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginLeft="@dimen/dimen5dp"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:src="@drawable/ic_bottom_news"/>
+        <TextView
+            android:layout_marginLeft="@dimen/dimen15dp"
+            android:layout_gravity="center"
+            android:text="@string/che_do_ban_dem"
+            android:textSize="@dimen/text_size_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <Switch
+            android:id="@+id/toggle_dark_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="@dimen/dimen5dp"
+        android:id="@+id/btnApplicationTerms"
         android:layout_margin="@dimen/dimen10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -127,7 +179,6 @@
             android:layout_gravity="center"
             android:text="@string/dieu_khoan_ung_dung"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -156,7 +207,6 @@
             android:layout_gravity="center"
             android:text="@string/tin_doc_gan_day"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -185,7 +235,6 @@
             android:layout_gravity="center"
             android:text="@string/tin_da_luu"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -206,7 +255,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            ads:adSize="SMART_BANNER"
+            ads:adSize="LARGE_BANNER"
             ads:adUnitId="@string/ad_banner">
         </com.google.android.gms.ads.AdView>
     </RelativeLayout>

@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object  APIClient {
-    private val client = OkHttpClient.Builder().build()
+    private var client = OkHttpClient.Builder().retryOnConnectionFailure(true).build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(URL_CATE_CHINH)

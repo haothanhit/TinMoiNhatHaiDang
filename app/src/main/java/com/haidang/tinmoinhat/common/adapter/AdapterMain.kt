@@ -94,7 +94,11 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity
         notifyDataSetChanged()
 
     }
+    public fun clearData() {
+        arrArticle?.clear()
+        //notifyDataSetChanged()
 
+    }
     override fun getItemViewType(position: Int): Int {
         return if (position % 6 == 0 && position != 0) {
             VIEW_ADS

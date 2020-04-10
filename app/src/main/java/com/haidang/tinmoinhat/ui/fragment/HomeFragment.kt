@@ -8,6 +8,7 @@ import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.ViewPagerAdapter
 import com.haidang.tinmoinhat.common.base.BaseFragment
 import com.haidang.tinmoinhat.common.global.Constants.Companion.PAGE_NUMBER
+import com.haidang.tinmoinhat.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: BaseFragment() {
@@ -36,7 +37,7 @@ class HomeFragment: BaseFragment() {
     private fun setupViewPager() {
         adapter = ViewPagerAdapter(childFragmentManager!!) //viewpager
         viewPager.adapter = adapter
-        viewPager.setOffscreenPageLimit(PAGE_NUMBER)
+        viewPager.offscreenPageLimit=PAGE_NUMBER
         tabLayout.setupWithViewPager(viewPager)
 
 

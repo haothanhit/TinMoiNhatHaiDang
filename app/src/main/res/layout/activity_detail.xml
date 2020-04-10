@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/recycler_view_details"
                         android:descendantFocusability="blocksDescendants"
-                        ads:adSize="MEDIUM_RECTANGLE"
+                        ads:adSize="LARGE_BANNER"
                         ads:adUnitId="@string/ad_banner" />
 
                     <RelativeLayout

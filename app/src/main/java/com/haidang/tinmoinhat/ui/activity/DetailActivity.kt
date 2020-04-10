@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
@@ -25,7 +26,6 @@ import org.jsoup.select.Elements
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -77,7 +77,7 @@ class DetailActivity : BaseActivity() {
                 arrayListRelate  = gson.fromJson(json, type)
 
             }catch (ex:Exception){
-                var a:ModelArticle=   gson.fromJson<ModelArticle>(json, object : TypeToken<ModelArticle>() {}.type)
+                var a:ModelArticle=   gson.fromJson(json, object : TypeToken<ModelArticle>() {}.type)
                 arrayListRelate.add(a)
             }
             if(arrayListRelate.size>1){

@@ -1,7 +1,12 @@
 package com.haidang.tinmoinhat.ui.activity
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haidang.tinmoinhat.R
@@ -19,8 +24,28 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         replaceFragment(R.id.container, HomeFragment(), false)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-    }
+        navigation.performClick()
+        val preferencesRelate =
+            this.getSharedPreferences("theme", MODE_PRIVATE)
+        val isTheme = preferencesRelate.getInt("is_theme", 0)
+        setModeTheme(isTheme)
 
+    }
+     fun setModeTheme(mode:Int){ //0: time , 1 :light ,2:dark
+         val appSharedPrefs: SharedPreferences =    //save local mode Theme
+             this.getSharedPreferences("theme", Context.MODE_PRIVATE)
+         val prefsEditor = appSharedPrefs.edit()
+         prefsEditor.putInt("is_theme", mode)
+         prefsEditor.commit()
+         prefsEditor.apply()
+
+        AppCompatDelegate.setDefaultNightMode(mode)
+
+     }
+
+    fun setTabBottom(@IdRes itemId:Int){ //0: time , 1 :light ,2:dark
+        navigation.selectedItemId=itemId
+    }
     private val mOnNavigationItemSelectedListener =
         object : BottomNavigationView.OnNavigationItemSelectedListener {
 

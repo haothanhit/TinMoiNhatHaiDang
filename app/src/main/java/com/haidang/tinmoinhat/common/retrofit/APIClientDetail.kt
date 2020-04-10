@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object APIClientDetail {
-    private val client = OkHttpClient.Builder().build()
+    private val client = OkHttpClient.Builder().retryOnConnectionFailure(true).build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(Constants.URL_DATA_CHINH)
