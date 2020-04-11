@@ -29,19 +29,16 @@ import java.lang.Exception
 
 
 class ArticleFragment : BaseFragment() {
-    private var tabTitle: String? = ""
-    private var category: String? = ""
     private var tabID: String? = ""
     private val TAG:String =ArticleFragment:: class.java.getSimpleName()
     private var mAdaper:AdapterMain?=null
     companion object {
         @JvmStatic
-        fun newInstance(mTabID: String, mTabTitle: String, mCategory: String) =
+        fun newInstance(mTabID: String) =
             ArticleFragment().apply {
                 arguments = Bundle().apply {
                     putString("tabID", mTabID)
-                    putString("tabTitle", mTabTitle)
-                    putString("category", mCategory)
+
                 }
             }
     }
@@ -49,8 +46,7 @@ class ArticleFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         arguments?.getString("tabID")?.let { tabID = it }
-        arguments?.getString("tabTitle")?.let { tabTitle = it }
-        arguments?.getString("category")?.let { category = it }
+
     }
 
     override fun onCreateView(

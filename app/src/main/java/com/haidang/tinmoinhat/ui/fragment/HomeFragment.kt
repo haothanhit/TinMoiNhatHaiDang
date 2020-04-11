@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.ViewPagerAdapter
+import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.base.BaseFragment
 import com.haidang.tinmoinhat.common.global.Constants.Companion.PAGE_NUMBER
 import com.haidang.tinmoinhat.ui.activity.MainActivity
@@ -39,6 +41,8 @@ class HomeFragment: BaseFragment() {
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit=PAGE_NUMBER
         tabLayout.setupWithViewPager(viewPager)
+        tabLayout.tabTextColors= if ((activity as BaseActivity).currentIsNight()) context!!.resources.getColorStateList(R.color.white) else  context!!.resources.getColorStateList(R.color.black)
+
 
 
     }

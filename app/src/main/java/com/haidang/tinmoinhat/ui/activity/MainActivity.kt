@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.base.BaseActivity
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
 import com.haidang.tinmoinhat.common.global.Constants.Companion.TAB_HOME
 import com.haidang.tinmoinhat.common.global.Constants.Companion.TAB_SETTING
 import com.haidang.tinmoinhat.ui.fragment.HomeFragment
@@ -26,22 +27,12 @@ class MainActivity : BaseActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigation.performClick()
         val preferencesRelate =
-            this.getSharedPreferences("theme", MODE_PRIVATE)
-        val isTheme = preferencesRelate.getInt("is_theme", 0)
+            this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
+        val isTheme = preferencesRelate.getInt(KEY_THEME, 0)
         setModeTheme(isTheme)
 
     }
-     fun setModeTheme(mode:Int){ //0: time , 1 :light ,2:dark
-         val appSharedPrefs: SharedPreferences =    //save local mode Theme
-             this.getSharedPreferences("theme", Context.MODE_PRIVATE)
-         val prefsEditor = appSharedPrefs.edit()
-         prefsEditor.putInt("is_theme", mode)
-         prefsEditor.commit()
-         prefsEditor.apply()
 
-        AppCompatDelegate.setDefaultNightMode(mode)
-
-     }
 
     fun setTabBottom(@IdRes itemId:Int){ //0: time , 1 :light ,2:dark
         navigation.selectedItemId=itemId

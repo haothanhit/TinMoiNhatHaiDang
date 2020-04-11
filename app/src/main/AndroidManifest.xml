@@ -34,6 +34,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             ></activity>
         <activity
+            android:name=".ui.activity.TickAndSaveActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            ></activity>
+        <activity
+            android:name=".ui.activity.LoadTickAndSaveActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            ></activity>
+        <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>

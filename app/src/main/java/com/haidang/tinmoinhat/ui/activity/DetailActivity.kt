@@ -1,11 +1,12 @@
 package com.haidang.tinmoinhat.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
@@ -15,6 +16,8 @@ import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.AdapterDetail
 import com.haidang.tinmoinhat.common.adapter.AdapterRelate
 import com.haidang.tinmoinhat.common.base.BaseActivity
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RECENT_READING
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RELATE
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.model.ModelContent
 import com.haidang.tinmoinhat.common.retrofit.APIClientDetail
@@ -30,7 +33,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class DetailActivity : BaseActivity() {
-    private val TAG: String = DetailActivity::class.java.getSimpleName()
+    private val TAG: String = DetailActivity::class.java.simpleName
     private var data: ModelArticle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,26 +64,58 @@ class DetailActivity : BaseActivity() {
         recycler_view_relate.addItemDecoration(dividerHorizontal)
         loadRelate()
 
+        //save RecentReading
+        val appSharedPrefs: SharedPreferences =
+            this.getSharedPreferences(KEY_RECENT_READING, Context.MODE_PRIVATE)
+        val prefsEditor = appSharedPrefs.edit()
+        val typeRecent = object : TypeToken<ArrayList<ModelArticle?>?>() {}.type
+        val jsonSave: String = appSharedPrefs.getString(KEY_RECENT_READING, "").toString()
+        var arrayListSave = ArrayList<ModelArticle>()
+        var isSaved = true
+        if (jsonSave != "") {
+            try {
+                arrayListSave = Gson().fromJson(jsonSave, typeRecent)
+
+            } catch (ex: java.lang.Exception) {
+                var a: ModelArticle =
+                    Gson().fromJson(jsonSave, object : TypeToken<ModelArticle>() {}.type)
+                arrayListSave.add(a)
+            }
+            for (i in arrayListSave) {
+                if (i.id.equals(data?.id)) {
+                    isSaved = false
+                    break
+                }
+            }
+            arrayListSave.add(data!!)
+        } else {
+            arrayListSave.add(data!!)
+        }
+        if (isSaved) {   // if article not saved
+            val json1 = Gson().toJson(arrayListSave)
+            prefsEditor.putString(KEY_RECENT_READING, json1).apply()
+        }
+
     }
 
     private fun loadRelate() {
-        val preferencesRelate = getSharedPreferences("relate", MODE_PRIVATE)
         val gson = Gson()
-        val json = preferencesRelate.getString("relate", "")
+        val json =getSharedPrefsString(KEY_RELATE)
         val type = object : TypeToken<ArrayList<ModelArticle>>() {}.type
         if (json != "") {
 
             //Layout relate
             val arrayList = ArrayList<ModelArticle>()
-            var arrayListRelate=ArrayList<ModelArticle>()
+            var arrayListRelate = ArrayList<ModelArticle>()
             try {
-                arrayListRelate  = gson.fromJson(json, type)
+                arrayListRelate = gson.fromJson(json, type)
 
-            }catch (ex:Exception){
-                var a:ModelArticle=   gson.fromJson(json, object : TypeToken<ModelArticle>() {}.type)
+            } catch (ex: Exception) {
+                var a: ModelArticle =
+                    gson.fromJson(json, object : TypeToken<ModelArticle>() {}.type)
                 arrayListRelate.add(a)
             }
-            if(arrayListRelate.size>1){
+            if (arrayListRelate.size > 1) {
                 var i = 0
                 while (arrayList.size < 7) {  //tong so bai viet lien quan se hien
                     val ran = Random()
@@ -92,7 +127,7 @@ class DetailActivity : BaseActivity() {
                     i++
                 }
             }
-            recycler_view_relate.adapter = AdapterRelate(arrayList,this)
+            recycler_view_relate.adapter = AdapterRelate(arrayList, this)
 
         }
 

@@ -1,9 +1,7 @@
 package com.haidang.tinmoinhat.common.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +11,15 @@ import com.google.android.gms.ads.AdRequest
 import com.google.gson.Gson
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.abstractViewHolder.BaseViewHolder
+import com.haidang.tinmoinhat.common.base.BaseActivity
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RELATE
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.ui.activity.DetailActivity
 import kotlinx.android.synthetic.main.custom_item_recycler_view_ads.view.*
 import kotlinx.android.synthetic.main.custom_item_recycler_view_main.view.*
 
 
-class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity) :
+class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activity) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
     private val VIEW_ITEM = 1
     private val VIEW_ADS = 2
@@ -44,15 +44,9 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity
                 .into(itemView.img_item_main)
             itemView.card_view_item.setOnClickListener { //on click
                 //save relate
-                val appSharedPrefs: SharedPreferences =
-                    activity.getSharedPreferences("relate", Context.MODE_PRIVATE)
-                val prefsEditor = appSharedPrefs.edit()
-                val gson = Gson()
-                val json = gson.toJson(arrArticle)
-                prefsEditor.putString("relate", json)
-                prefsEditor.commit()
-                prefsEditor.apply()
-
+                val json = Gson().toJson(arrArticle)
+                (activity as BaseActivity).saveSharedPrefsString(KEY_RELATE, json)
+                //Switch screen
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)
                 activity.startActivity(intent)
@@ -71,6 +65,10 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main_ads)
             itemView.card_view_item_ads.setOnClickListener {  //on click
+                //save relate
+                val json = Gson().toJson(arrArticle)
+                (activity as BaseActivity).saveSharedPrefsString(KEY_RELATE, json)
+                //Switch screen
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)
                 activity.startActivity(intent)
@@ -94,11 +92,13 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>,val activity: Activity
         notifyDataSetChanged()
 
     }
+
     public fun clearData() {
         arrArticle?.clear()
         //notifyDataSetChanged()
 
     }
+
     override fun getItemViewType(position: Int): Int {
         return if (position % 6 == 0 && position != 0) {
             VIEW_ADS

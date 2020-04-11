@@ -6,11 +6,20 @@ class Constants {
     const val TAB_HOME = "HomeFragment"
     const val TAB_SETTING = "SettingFragment"
     const val  PAGE_NUMBER = 13
-    const val URL_CATE_CHINH = "http://45.76.191.33:8090/api/"
+    const val URL_CATE_CHINH = "http://66.42.59.92:8090/api/"
     const val URL_CATE_CHINH1 = "get_arc_by_catid?"
 
-    const val URL_DATA_CHINH = "http://45.76.191.33:8090/api/"
+    const val URL_DATA_CHINH = "http://66.42.59.92:8090/api/"
     const val URL_DATA_CHINH1 = "get_noi_dung_tin_new?"
+
+
+
+// list  key SharedPreferences
+    const val KEY_RELATE = "relate"
+    const val KEY_RECENT_READING = "recentReading"
+      const val KEY_SAVE_ARTICLE = "saveArticle"
+      const val KEY_THEME = "theme"
+
 
   }
 }

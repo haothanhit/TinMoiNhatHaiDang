@@ -1,16 +1,22 @@
 package com.haidang.tinmoinhat.common.base
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.gson.Gson
 import com.haidang.tinmoinhat.R
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -22,11 +28,23 @@ abstract class BaseActivity : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.startusColor)
+            window.statusBarColor= if (currentIsNight()) ContextCompat.getColor(this, R.color.black) else  ContextCompat.getColor(this, R.color.white)
         }
     }
+    fun currentIsNight():Boolean{ //false :light ,true :dark=night
+        val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags==Configuration.UI_MODE_NIGHT_YES
 
+    }
+    fun setModeTheme(mode:Int){ //0: time , 1 :light ,2:dark
+        val appSharedPrefs: SharedPreferences =    //save local mode Theme
+            this.getSharedPreferences(KEY_THEME, Context.MODE_PRIVATE)
+        val prefsEditor = appSharedPrefs.edit()
+        prefsEditor.putInt(KEY_THEME, mode).apply()
 
+        AppCompatDelegate.setDefaultNightMode(mode)
+
+    }
     override fun onBackPressed() {
         super.onBackPressed()
     }
@@ -53,7 +71,30 @@ abstract class BaseActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().show(showFragment).hide(currentFragment).commit();
         currentFragment = showFragment;
     }
+    /**
+     * save  SharedPreferences type String
+     */
+    fun saveSharedPrefsString(key:String,value:String) {
+        val appSharedPrefs: SharedPreferences =
+            this.getSharedPreferences(key, Context.MODE_PRIVATE)
+        val prefsEditor = appSharedPrefs.edit()
+        prefsEditor.putString(key, value).apply()
+    }
+    /**
+     * get  SharedPreferences type String
+     */
+    fun getSharedPrefsString(key:String):String {
+        val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
+        return preferencesRelate.getString(key, "")!!
+    }
 
+    /**
+     * clear  SharedPreferences
+     */
+    fun clearSharedPrefs(key:String) {
+        val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
+        val prefsEditor = preferencesRelate.edit()
+        prefsEditor.clear().apply()    }
     /**
      * remove all back stack
      */

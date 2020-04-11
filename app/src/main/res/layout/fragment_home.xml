@@ -3,20 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
     xmlns:tools="http://schemas.android.com/tools">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp"
         >
 <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
+    android:background="@android:color/transparent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
    <ImageView
-       android:layout_width="@dimen/dimen50dp"
-       android:layout_height="@dimen/dimen50dp"
-       android:src="@drawable/ic_rate_star_off"
+       android:layout_width="@dimen/dimen35dp"
+       android:layout_height="@dimen/dimen35dp"
+       android:src="@drawable/ic_navigation_bar"
        android:layout_marginLeft="@dimen/dimen5dp"
        android:layout_marginRight="@dimen/dimen5dp"
        />
@@ -26,6 +30,8 @@
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
         app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
 
         />
 </androidx.appcompat.widget.Toolbar>
