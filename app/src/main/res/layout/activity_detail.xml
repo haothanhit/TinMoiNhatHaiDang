@@ -5,29 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    >
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-      >
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-         >
-
-            <TextView
-                android:id="@+id/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textSize="20dp" />
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+   <RelativeLayout
+       android:id="@+id/rltHeader"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/dimen56dp"
+       android:paddingLeft="@dimen/dimen10dp"
+       android:paddingRight="@dimen/dimen10dp">
+       <ImageView
+           android:layout_centerVertical="true"
+           android:id="@+id/ivBackDetail"
+           android:layout_width="@dimen/dimen25dp"
+           android:layout_height="@dimen/dimen25dp"
+           android:src="@drawable/ic_arrow_back"/>
+       <TextView
+           android:id="@+id/tvTitleDetail"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Title"
+           android:layout_toRightOf="@+id/ivBackDetail"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@+id/ivLoveArticle"
+           android:textSize="@dimen/text_size_title"
+           android:layout_marginLeft="@dimen/dimen10dp"
+           android:maxLines="1"
+           />
+       <ImageView
+           android:layout_centerVertical="true"
+           android:id="@+id/ivLoveArticle"
+           android:layout_width="@dimen/dimen25dp"
+           android:layout_height="@dimen/dimen25dp"
+           android:layout_toLeftOf="@+id/ivSizeText"
+           android:layout_marginLeft="@dimen/dimen10dp"
+           android:layout_marginRight="@dimen/dimen15dp"
+           android:src="@drawable/ic_love"/>
+       <ImageView
+       android:layout_centerVertical="true"
+       android:id="@+id/ivSizeText"
+           android:layout_alignParentRight="true"
+       android:layout_width="@dimen/dimen25dp"
+       android:layout_height="@dimen/dimen25dp"
+       android:src="@drawable/ic_size_text"/>
+   </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar_details"
@@ -36,12 +54,11 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_relate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
-        android:alpha="1"
+        android:layout_below="@+id/rltHeader"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -148,5 +165,5 @@
                 </RelativeLayout>
             </FrameLayout>
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

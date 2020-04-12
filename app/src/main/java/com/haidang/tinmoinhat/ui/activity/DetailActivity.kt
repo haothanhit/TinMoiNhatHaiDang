@@ -18,6 +18,7 @@ import com.haidang.tinmoinhat.common.adapter.AdapterRelate
 import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RECENT_READING
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RELATE
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_SAVE_ARTICLE
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.model.ModelContent
 import com.haidang.tinmoinhat.common.retrofit.APIClientDetail
@@ -35,7 +36,7 @@ import kotlin.collections.ArrayList
 class DetailActivity : BaseActivity() {
     private val TAG: String = DetailActivity::class.java.simpleName
     private var data: ModelArticle? = null
-
+    private var isArticleSaved:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -45,6 +46,10 @@ class DetailActivity : BaseActivity() {
 
     @SuppressLint("WrongConstant")
     private fun initView() {
+        ivBackDetail.setOnClickListener { onBackPressed() }
+        var textTitle=data?.source?.substring(7)  //Bỏ chữ nguồn
+        tvTitleDetail.text=textTitle?.substring(0,textTitle.lastIndexOf("-")!!)?.trim()//set text title
+        ivLoveArticle.setOnClickListener { saveOrRemoveArticle(isArticleSaved) }
         //AdView
         val adRequest = AdRequest.Builder().build()
         adView_detail.loadAd(adRequest)
@@ -54,7 +59,6 @@ class DetailActivity : BaseActivity() {
         recycler_view_details.layoutManager = linearLayoutManager
         recycler_view_details.setHasFixedSize(true)
         getData()
-
         //Layout relate
         recycler_view_relate.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
@@ -63,7 +67,102 @@ class DetailActivity : BaseActivity() {
             DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
         recycler_view_relate.addItemDecoration(dividerHorizontal)
         loadRelate()
+        saveRecentReading()
+        getSateSaveArticle()
+        setStateImageArticleSaved()
 
+    }
+
+    private fun getSateSaveArticle() {  //kiem tra xem bai viet nay da duoc luu chưa thay doi image
+        val appSharedPrefs: SharedPreferences =
+            this.getSharedPreferences(KEY_SAVE_ARTICLE, Context.MODE_PRIVATE)
+        val typeRecent = object : TypeToken<ArrayList<ModelArticle?>?>() {}.type
+        val jsonSave: String = appSharedPrefs.getString(KEY_SAVE_ARTICLE, "").toString()
+        if (jsonSave != "") {
+            var arrayListSave = ArrayList<ModelArticle>()
+            try {
+                arrayListSave = Gson().fromJson(jsonSave, typeRecent)
+
+            } catch (ex: java.lang.Exception) {
+                var a: ModelArticle =
+                    Gson().fromJson(jsonSave, object : TypeToken<ModelArticle>() {}.type)
+                arrayListSave.add(a)
+            }
+            for (i in arrayListSave) {
+                if (i.id.equals(data?.id)) { //neu tin nay da luu thi k luu
+                    isArticleSaved = true
+                    break
+                }
+            }
+        }
+
+    }
+    private fun setStateImageArticleSaved(){
+        if (isArticleSaved) {   // if article saved
+            ivLoveArticle.setImageResource(R.drawable.ic_loved)
+        }else  {
+            ivLoveArticle.setImageResource(R.drawable.ic_love)
+        }
+    }
+    private fun saveOrRemoveArticle(state :Boolean) {//luu lai hoac xoa tin da luu
+        val appSharedPrefs: SharedPreferences =
+            this.getSharedPreferences(KEY_SAVE_ARTICLE, Context.MODE_PRIVATE)
+        val prefsEditor = appSharedPrefs.edit()
+        val typeRecent = object : TypeToken<ArrayList<ModelArticle?>?>() {}.type
+        val jsonSave: String = appSharedPrefs.getString(KEY_SAVE_ARTICLE, "").toString()
+        var arrayListSave = ArrayList<ModelArticle>()
+         if(state){  //xoa tin da luu
+             if (jsonSave != "") {
+                 try {
+                     arrayListSave = Gson().fromJson(jsonSave, typeRecent)
+
+                 } catch (ex: java.lang.Exception) {
+                     var a: ModelArticle =
+                         Gson().fromJson(jsonSave, object : TypeToken<ModelArticle>() {}.type)
+                     arrayListSave.add(a)
+                 }
+                 for (i in arrayListSave) {
+                     if (i.id.equals(data?.id)) { //neu tin nay da luu thi xoa
+                         arrayListSave.remove(i)
+                         break
+                     }
+                 }
+             }
+                 val json1 = Gson().toJson(arrayListSave)
+                 prefsEditor.putString(KEY_SAVE_ARTICLE, json1).apply()
+             isArticleSaved=false
+
+         }else{ //them tin da luu
+             var isSaved = true
+             if (jsonSave != "") {
+                 try {
+                     arrayListSave = Gson().fromJson(jsonSave, typeRecent)
+
+                 } catch (ex: java.lang.Exception) {
+                     var a: ModelArticle =
+                         Gson().fromJson(jsonSave, object : TypeToken<ModelArticle>() {}.type)
+                     arrayListSave.add(a)
+                 }
+                 for (i in arrayListSave) {
+                     if (i.id.equals(data?.id)) { //neu tin nay da luu thi k luu
+                         isSaved = false
+                         break
+                     }
+                 }
+             }
+             arrayListSave.add(data!!)
+             if (isSaved) {   // if article not saved
+                 val json1 = Gson().toJson(arrayListSave)
+                 prefsEditor.putString(KEY_SAVE_ARTICLE, json1).apply()
+             }
+             isArticleSaved=true
+         }
+        setStateImageArticleSaved()
+
+
+    }
+
+    private fun saveRecentReading() {  //luu lai tin doc gan day
         //save RecentReading
         val appSharedPrefs: SharedPreferences =
             this.getSharedPreferences(KEY_RECENT_READING, Context.MODE_PRIVATE)
@@ -82,20 +181,17 @@ class DetailActivity : BaseActivity() {
                 arrayListSave.add(a)
             }
             for (i in arrayListSave) {
-                if (i.id.equals(data?.id)) {
+                if (i.id.equals(data?.id)) {//neu tin nay da luu thi k luu
                     isSaved = false
                     break
                 }
             }
-            arrayListSave.add(data!!)
-        } else {
-            arrayListSave.add(data!!)
         }
+        arrayListSave.add(data!!)
         if (isSaved) {   // if article not saved
             val json1 = Gson().toJson(arrayListSave)
             prefsEditor.putString(KEY_RECENT_READING, json1).apply()
         }
-
     }
 
     private fun loadRelate() {
@@ -151,9 +247,9 @@ class DetailActivity : BaseActivity() {
                     if (element != null) {
                         val elements: Elements = element.select("p")
                         val title: String = document.select("h3.title").text()
-                        val source: String = document.select("p").first().text()
+                       // val source: String = document.select("p").first().text()
                         arrayList.add(ModelContent(title, ""))
-                        arrayList.add(ModelContent(source, ""))
+                      //  arrayList.add(ModelContent(source, ""))
 
                         //API mới
                         val shot: String
