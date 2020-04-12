@@ -101,10 +101,10 @@ class ArticleFragment : BaseFragment() {
        call.enqueue(object : Callback<ArrayList<ModelArticle>> {
            override fun onResponse(call: Call<ArrayList<ModelArticle>>, response: Response<ArrayList<ModelArticle>>)
            {
-               try {
-                   (activity as MainActivity).setTabBottom(R.id.navigation_news)
-
-               }catch (ex:Exception){}
+//               try {
+//                   (activity as MainActivity).setTabBottom(1)
+//
+//               }catch (ex:Exception){}
                if(response.isSuccessful &&response.body()!=null){
 
                    try {

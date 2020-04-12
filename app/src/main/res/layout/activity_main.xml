@@ -10,18 +10,66 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"
+        android:layout_above="@+id/ivLineMain"
         />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
+    <ImageView
+        android:id="@+id/ivLineMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@drawable/bottom_navigation_color"
-        app:itemTextColor="@drawable/bottom_navigation_color"
-        app:menu="@menu/bottom_navigation" />
+        android:layout_height="@dimen/dimen1dp"
+        android:background="#20000000"
+        android:layout_above="@+id/navigation"
+
+        />
+     <LinearLayout
+         android:id="@+id/navigation"
+         android:background="@android:color/transparent"
+         android:layout_alignParentBottom="true"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dimen70dp">
+         <LinearLayout
+             android:layout_margin="@dimen/dimen2dp"
+             android:id="@+id/llBottomNews"
+             android:background="@drawable/bg_bottom_navigation"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:gravity="center"
+             android:layout_weight="1">
+             <ImageView
+                 android:id="@+id/ivBottomNews"
+                 android:layout_width="@dimen/dimen25dp"
+                 android:layout_height="@dimen/dimen25dp"
+                 android:src="@drawable/ic_bottom_news"/>
+             <TextView
+                 android:id="@+id/tvBottomNews"
+                 android:layout_marginLeft="5dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/tin_tuc"
+                 android:textSize="@dimen/text_size_bottom"/>
+         </LinearLayout>
+         <LinearLayout
+             android:layout_margin="@dimen/dimen2dp"
+             android:id="@+id/llBottomSettings"
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:gravity="center"
+             android:layout_weight="1">
+             <ImageView
+                 android:id="@+id/ivBottomSettings"
+                 android:layout_width="@dimen/dimen25dp"
+                 android:layout_height="@dimen/dimen25dp"
+                 android:src="@drawable/ic_bottom_setting"/>
+             <TextView
+                 android:id="@+id/tvBottomSettings"
+                 android:layout_marginLeft="5dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/cai_dat"
+                 android:textSize="@dimen/text_size_bottom"/>
+         </LinearLayout>
+     </LinearLayout>
+
 
 </RelativeLayout>
