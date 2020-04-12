@@ -16,7 +16,7 @@ import java.lang.Exception
 
 class SplashActivity : BaseActivity() {
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 2000 //3 seconds
+    private val SPLASH_DELAY: Long = 2000 //2 seconds
 
 
 

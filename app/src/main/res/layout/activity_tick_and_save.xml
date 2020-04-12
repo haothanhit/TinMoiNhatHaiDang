@@ -5,55 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="@dimen/dimen56dp"
+        android:paddingLeft="@dimen/dimen10dp"
+        android:paddingRight="@dimen/dimen10dp">
         <ImageView
+            android:layout_centerVertical="true"
             android:id="@+id/ivBackTickSave"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:src="@drawable/ic_arrow_back"/>
         <TextView
             android:id="@+id/titleTickSave"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="9"
-            android:gravity="center"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Title"
+            android:layout_toRightOf="@+id/ivBackTickSave"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/xoa_tat_ca_save"
+            android:textSize="@dimen/text_size_title"
+            android:layout_marginLeft="@dimen/dimen10dp"
+            android:maxLines="1"
+            />
 
-        <LinearLayout
+        <ImageView
+            android:layout_centerVertical="true"
             android:id="@+id/xoa_tat_ca_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="3dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:src="@drawable/bg_btn_state_delete_all"/>
+    </RelativeLayout>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/bg_btn_state_delete_all" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
 

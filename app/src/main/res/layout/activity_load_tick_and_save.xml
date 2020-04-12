@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_LoadDanhDau"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"/>
+        android:layout_height="@dimen/dimen56dp"
+        android:paddingLeft="@dimen/dimen10dp"
+        android:paddingRight="@dimen/dimen10dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:alpha="1"
-        android:layout_below="@id/toolbar_LoadDanhDau">
-        <FrameLayout
-            android:id="@id/frame_item"
+        <ImageView
+            android:id="@+id/ivBackLoad"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/tvTitleLoad"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen10dp"
+            android:layout_toLeftOf="@+id/ivSizeTextLoad"
+            android:layout_toRightOf="@+id/ivBackLoad"
+            android:maxLines="1"
+            android:text="Title"
+            android:textSize="@dimen/text_size_title" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_load_danh_dau"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="0dp"
-                    android:nestedScrollingEnabled="false"/>
-            </RelativeLayout>
-        </FrameLayout>
+        <ImageView
+            android:id="@+id/ivSizeTextLoad"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_size_text" />
+    </RelativeLayout>
 
-    </ScrollView>
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvLoadTickOrSave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

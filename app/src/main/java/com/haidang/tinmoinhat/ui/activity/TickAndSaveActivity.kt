@@ -14,6 +14,8 @@ import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RECENT_READI
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import kotlinx.android.synthetic.main.activity_tick_and_save.*
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TickAndSaveActivity :BaseActivity() {
   private  var tickOrSave: String?="" // recentReading   or
@@ -48,7 +50,7 @@ class TickAndSaveActivity :BaseActivity() {
                     Gson().fromJson(json, object : TypeToken<ModelArticle>() {}.type)
                 arrayList.add(a)
             }
-
+            arrayList.reverse()
             mAdaper= AdapterTickAndSaveArticle(arrayList, this,tickOrSave!!)
             recycler_view_tick_or_save.adapter =mAdaper
 

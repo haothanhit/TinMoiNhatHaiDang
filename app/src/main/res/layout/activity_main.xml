@@ -25,7 +25,7 @@
          android:background="@android:color/transparent"
          android:layout_alignParentBottom="true"
          android:layout_width="match_parent"
-         android:layout_height="@dimen/dimen70dp">
+         android:layout_height="@dimen/dimen65dp">
          <LinearLayout
              android:layout_margin="@dimen/dimen2dp"
              android:id="@+id/llBottomNews"

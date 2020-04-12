@@ -19,6 +19,11 @@ class Constants {
     const val KEY_RECENT_READING = "recentReading"
       const val KEY_SAVE_ARTICLE = "saveArticle"
       const val KEY_THEME = "theme"
+    const val KEY_FONT_SIZE = "fontSize"
+    const val KEY_SIZE_SMALL = "sizeSmall"
+    const val KEY_SIZE_MEDIUM = "sizeMedium"
+    const val KEY_SIZE_BIG = "sizeBig"
+    const val KEY_SIZE_VERY_BIG = "sizeVeryBig"
 
 
   }
