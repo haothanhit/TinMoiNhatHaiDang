@@ -11,24 +11,26 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.AdapterMain
+import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.base.BaseFragment
 import com.haidang.tinmoinhat.common.listener.EndlessRecyclerViewScrollListener
-import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.retrofit.APIClient
 import com.haidang.tinmoinhat.common.retrofit.APIInterface
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BooleanSupplier
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_acticle.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class ArticleFragment : BaseFragment() {
     private var tabID: String? = ""
-    private val TAG:String =ArticleFragment:: class.java.getSimpleName()
-    private var mAdaper:AdapterMain?=null
+    private val TAG: String = ArticleFragment::class.java.getSimpleName()
+    private var mAdaper: AdapterMain? = null
+    val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
+
     companion object {
         @JvmStatic
         fun newInstance(mTabID: String) =
@@ -64,8 +66,8 @@ class ArticleFragment : BaseFragment() {
     @SuppressLint("WrongConstant")
     private fun initView() {
 
-        var  linearLayoutManager= LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        rcvArticle.layoutManager =linearLayoutManager
+        var linearLayoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        rcvArticle.layoutManager = linearLayoutManager
         rcvArticle.setHasFixedSize(true)
         //Chèn một kẻ ngang giữa các phần tử
         val dividerHorizontal =
@@ -76,12 +78,13 @@ class ArticleFragment : BaseFragment() {
         //load more
         val endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener =
             object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
-                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?
+                override fun onLoadMore(
+                    page: Int, totalItemsCount: Int, view: RecyclerView?
                 ) {
                     getData(page.toString())
                 }
             }
-              //add Listener
+        //add Listener
         rcvArticle.addOnScrollListener(endlessRecyclerViewScrollListener)
         //refresh data
         swipe_to_refresh.setOnRefreshListener {
@@ -91,40 +94,44 @@ class ArticleFragment : BaseFragment() {
         }
 
     }
-   fun  getData(page:String){
-       val request = APIClient.getClient(APIInterface::class.java)
-       val call = request.getArticle(tabID.toString(), page)
-       Log.d(TAG, call.request().url.toString())
+   var getDataDone:Boolean=false
+    fun getData(page: String) {
+        (activity as BaseActivity).showProgress()
+        val request = APIClient.getClient(APIInterface::class.java)
+        var disposable = request.getArticle(tabID.toString(), page)
+            .retryUntil(BooleanSupplier { getDataDone })
+            .observeOn(AndroidSchedulers.mainThread())  // handle the results in the ui thread
+            .subscribeOn(Schedulers.io()) // execute the call asynchronously
+            .subscribe({ success ->
+                success?.let {
+                    (activity as BaseActivity).hideProgress()
+                    getDataDone=true
+                    try {
+                        if (swipe_to_refresh.isRefreshing) {
+                            swipe_to_refresh.isRefreshing = false
+                            mAdaper?.clearData()
+                        }
+                        if (mAdaper == null) {
+                            mAdaper = AdapterMain(it, activity!!)
+                            rcvArticle.adapter = mAdaper
+                        } else {
+                            mAdaper!!.addData(it)
+                        }
 
-       call.enqueue(object : Callback<ArrayList<ModelArticle>> {
-           override fun onResponse(call: Call<ArrayList<ModelArticle>>, response: Response<ArrayList<ModelArticle>>)
-           {
-//               try {
-//                   (activity as MainActivity).setTabBottom(1)
-//
-//               }catch (ex:Exception){}
-               if(response.isSuccessful &&response.body()!=null){
+                    } catch (ex: Exception) {
+                        Log.e(TAG, ex.message)
+                    }
 
-                   try {
-                       if(swipe_to_refresh.isRefreshing){
-                           swipe_to_refresh.isRefreshing=false
-                           mAdaper?.clearData()
-                       }
-                       if(mAdaper==null) {
-                           mAdaper=AdapterMain(response.body()!!,activity!!)
-                           rcvArticle.adapter = mAdaper
-                       }else{
-                           mAdaper!!.addData(response.body()!!)
-                       }
 
-                   }catch (ex:Exception){
-                       Log.e(TAG, ex.message)
-                   }
-               }
-           }
-           override fun onFailure(call: Call<ArrayList<ModelArticle>>, t: Throwable) {
-               Log.e(TAG, t.message)
-           }
-       })
-   }
+                }
+            }, { t ->
+
+            })
+        mCompositeDisposable.add(disposable)
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        mCompositeDisposable?.clear()
+    }
 }

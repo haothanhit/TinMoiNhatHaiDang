@@ -35,6 +35,10 @@ import com.haidang.tinmoinhat.common.model.ModelContent
 import com.haidang.tinmoinhat.common.retrofit.APIClientDetail
 import com.haidang.tinmoinhat.common.retrofit.APIInterface
 import com.universalvideoview.UniversalVideoView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BooleanSupplier
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
@@ -50,6 +54,7 @@ class DetailActivity : BaseActivity() {
     private var data: ModelArticle? = null
     private var isArticleSaved: Boolean = false
     private var adapterDetail:AdapterDetail?=null
+    val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -375,19 +380,21 @@ class DetailActivity : BaseActivity() {
 
 
     }
+    var getDataDone:Boolean=false
 
     fun getData() {
+       showProgress()
         val request = APIClientDetail.getClient(APIInterface::class.java)
-        val call = request.getNews(data?.id!!)
-        Log.d(TAG, call.request().url.toString())
-
-        call.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-
-                if (response.isSuccessful && response.body() != null) {
-
+        var disposable = request.getNews(data?.id!!)
+            .retryUntil(BooleanSupplier { getDataDone })
+            .observeOn(AndroidSchedulers.mainThread())  // handle the results in the ui thread
+            .subscribeOn(Schedulers.io()) // execute the call asynchronously
+            .subscribe({ success ->
+                success?.let {
+                  hideProgress()
+                    getDataDone=true
                     var arrayList = ArrayList<ModelContent>()
-                    val document: org.jsoup.nodes.Document = Jsoup.parse(response.body()!!)
+                    val document: org.jsoup.nodes.Document = Jsoup.parse(it)
                     val element: Element = document.select("div.content-detail").first()
 
                     if (element != null) {
@@ -421,11 +428,15 @@ class DetailActivity : BaseActivity() {
                     frame_item.visibility = View.VISIBLE
 
                 }
-            }
+            }, { t ->
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.e(TAG, t.message)
-            }
-        })
+            })
+        mCompositeDisposable.add(disposable)
+
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        mCompositeDisposable?.clear()
+    }
+
 }

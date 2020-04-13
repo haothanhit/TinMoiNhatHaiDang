@@ -1,5 +1,6 @@
 package com.haidang.tinmoinhat.common.base
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.gson.Gson
 import com.haidang.tinmoinhat.R
+import com.haidang.tinmoinhat.common.dialog.LoadingDialog
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
 
 
@@ -167,5 +169,22 @@ abstract class BaseActivity : AppCompatActivity() {
         System.exit(1);
     }
 
+    private var mDlg: Dialog? = null
 
+     fun showProgress() {
+        try {
+            hideProgress()
+            mDlg = LoadingDialog(this)
+            mDlg?.show()
+        } catch (ignored: Throwable) {
+            ignored.printStackTrace()
+        }
+    }
+
+     fun hideProgress() {
+        if (mDlg != null) {
+            mDlg?.dismiss()
+            mDlg = null
+        }
+    }
 }

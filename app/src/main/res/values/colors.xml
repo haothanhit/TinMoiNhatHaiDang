@@ -14,5 +14,6 @@
     <color name="blue_white">#6786FA</color>
     <color name="startusColor">#ffffff</color>
     <color name="colorSwitch">#4CD964</color>
+    <drawable name="transparent">#00000000</drawable>
 
 </resources>
