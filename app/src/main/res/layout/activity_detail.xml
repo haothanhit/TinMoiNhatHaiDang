@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
    >
    <RelativeLayout
-       android:id="@+id/rltHeader"
+       android:id="@+id/rltHeaderDetail"
        android:layout_width="match_parent"
        android:layout_height="@dimen/dimen56dp"
        android:paddingLeft="@dimen/dimen10dp"
@@ -47,18 +47,12 @@
        android:src="@drawable/ic_size_text"/>
    </RelativeLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_bar_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_relate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rltHeader"
+        android:layout_below="@+id/rltHeaderDetail"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -66,37 +60,39 @@
             android:layout_height="match_parent">
 
             <FrameLayout
+                android:layout_alignParentTop="true"
                 android:id="@+id/frame_video"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="@dimen/dimen200dp"
                 android:visibility="gone">
 
                 <com.universalvideoview.UniversalVideoView
                     android:id="@+id/videoView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     app:uvv_autoRotation="false"
                     app:uvv_fitXY="false" />
 
                 <ImageView
                     android:id="@+id/img_thumb"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
 
                 <com.universalvideoview.UniversalMediaController
                     android:id="@+id/media_controller"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    app:uvv_scalable="false" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:uvv_scalable="true" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/button_play"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dimen80dp"
+                    android:layout_height="@dimen/dimen80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/playbutton" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_play_video" />
             </FrameLayout>
 
             <FrameLayout

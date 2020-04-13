@@ -1,16 +1,9 @@
 package com.haidang.tinmoinhat.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import androidx.annotation.IdRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
@@ -21,7 +14,7 @@ import com.haidang.tinmoinhat.ui.fragment.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
-    private var defaultTextBottomColor:Int?=0
+    private var defaultTextBottomColor: Int? = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,24 +22,25 @@ class MainActivity : BaseActivity() {
         navigation.performClick()
         val preferencesRelate =
             this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
-        val isTheme = preferencesRelate.getInt(KEY_THEME, 0)
+        val isTheme = preferencesRelate.getInt(KEY_THEME, 1)
         setModeTheme(isTheme)
         llBottomNews.setOnClickListener(mOnclick)
-        llBottomSettings.setOnClickListener (mOnclick)
-        defaultTextBottomColor=tvBottomSettings.textColors.defaultColor
+        llBottomSettings.setOnClickListener(mOnclick)
+        defaultTextBottomColor = tvBottomSettings.textColors.defaultColor
         setColorTabBottom(1)
     }
 
 
-    fun setTabBottom( pos:Int){  // 1 :new ,2:setting
-        when(pos){
-            1->      llBottomNews.callOnClick()
-            2->llBottomSettings.callOnClick()
+    fun setTabBottom(pos: Int) {  // 1 :new ,2:setting
+        when (pos) {
+            1 -> llBottomNews.callOnClick()
+            2 -> llBottomSettings.callOnClick()
         }
     }
-    fun setColorTabBottom(pos:Int){// 1 :new ,2:setting
-        when(pos){
-            1->     {
+
+    fun setColorTabBottom(pos: Int) {// 1 :new ,2:setting
+        when (pos) {
+            1 -> {
                 llBottomNews.setBackgroundResource(R.drawable.bg_bottom_navigation)
                 llBottomSettings.setBackgroundResource(android.R.color.transparent)
                 ivBottomNews.setImageResource(R.drawable.ic_bottom_news_selected)
@@ -54,7 +48,7 @@ class MainActivity : BaseActivity() {
                 ivBottomSettings.setImageResource(R.drawable.ic_bottom_setting)
                 tvBottomSettings.setTextColor(defaultTextBottomColor!!)
             }
-            2->{
+            2 -> {
                 llBottomNews.setBackgroundResource(android.R.color.transparent)
                 llBottomSettings.setBackgroundResource(R.drawable.bg_bottom_navigation)
                 ivBottomNews.setImageResource(R.drawable.ic_bottom_news)
@@ -64,10 +58,11 @@ class MainActivity : BaseActivity() {
             }
         }
     }
+
     @SuppressLint("ResourceAsColor")
     private val mOnclick = View.OnClickListener { p0 ->
-        when(p0){
-            llBottomNews->{
+        when (p0) {
+            llBottomNews -> {
                 var isCreate = false
                 var fragment = supportFragmentManager.findFragmentByTag(TAB_HOME)
                 if (fragment == null) {
@@ -78,7 +73,7 @@ class MainActivity : BaseActivity() {
                 replaceFragmentwithTag(fragment, isCreate, TAB_HOME)
                 setColorTabBottom(1)
             }
-            llBottomSettings->{
+            llBottomSettings -> {
                 var isCreate = false
 
                 var fragment = supportFragmentManager.findFragmentByTag(TAB_SETTING)
@@ -93,7 +88,6 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
 
 
     /**

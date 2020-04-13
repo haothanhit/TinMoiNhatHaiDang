@@ -27,17 +27,19 @@ class AdapterRelate(val arrArticle: ArrayList<ModelArticle>,val activity:Activit
 
     inner class MyViewHolder(itemView: View) : BaseViewHolder<ModelArticle>(itemView) {
         override fun bind(item: ModelArticle) {
-            itemView.txt_title_relate.text = item?.title
-            itemView.txt_source_relate.text = item?.source
+            itemView.txt_title_item_Relate.text = item?.title
+            itemView.txt_source_item_Relate.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
-                .into(itemView.img_relate)
-            itemView.card_view_item_Relate.setOnClickListener { //on click
+                .into(itemView.img_item_Relate)
+            itemView.setOnClickListener { //on click
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)
                 activity.startActivity(intent)
                 activity.finish()
 
             }
+            itemView.ivPlayVideoRelate?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
+
 
         }
     }

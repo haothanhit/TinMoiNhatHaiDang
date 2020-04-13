@@ -2,6 +2,8 @@ package com.haidang.tinmoinhat.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,6 +11,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.AdapterDetail
 import com.haidang.tinmoinhat.common.base.BaseActivity
@@ -17,6 +20,7 @@ import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.model.ModelContent
 import com.haidang.tinmoinhat.common.retrofit.APIClientDetail
 import com.haidang.tinmoinhat.common.retrofit.APIInterface
+import com.universalvideoview.UniversalVideoView
 import kotlinx.android.synthetic.main.activity_load_tick_and_save.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
@@ -51,6 +55,53 @@ class LoadTickAndSaveActivity :BaseActivity() {
 
         ivSizeTextLoad.setOnClickListener {
             showDialogSetSizeText()
+        }
+        if(data?.isVideo!!){  // if article have video
+            frame_video_TickSave.visibility=View.VISIBLE
+            Glide.with(this).load(data?.thumb).into(img_thumbTickSave)
+            videoViewTickSave.setVideoURI(Uri.parse(data?.linkVideo))
+            media_controllerTickSave.setOnLoadingView(R.layout.custom_load_view)
+            videoViewTickSave.setMediaController(media_controllerTickSave)
+
+            button_playTickSave.setOnClickListener{
+                button_playTickSave.visibility = View.GONE
+                img_thumbTickSave.visibility = View.GONE
+                videoViewTickSave.start()
+            }
+
+            videoViewTickSave.setVideoViewCallback(object : UniversalVideoView.VideoViewCallback{
+                override fun onBufferingStart(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onBufferingEnd(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onPause(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onScaleChange(isFullscreen: Boolean) {
+                    if(isFullscreen){
+                        val layoutParams: ViewGroup.LayoutParams = frame_video_TickSave.layoutParams
+                        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+                        frame_video_TickSave.layoutParams = layoutParams
+                        //GONE the unconcerned views to leave room for video and controller
+                        rcvLoadTickOrSave.visibility = View.GONE
+                        rltHeaderTickSave.visibility = View.GONE
+                    }else{
+                        val layoutParams: ViewGroup.LayoutParams = frame_video_TickSave.layoutParams
+                        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                        layoutParams.height = resources.getDimension(R.dimen.dimen200dp).toInt()
+                        frame_video_TickSave.layoutParams = layoutParams
+                        rcvLoadTickOrSave.visibility = View.VISIBLE
+                        rltHeaderTickSave.visibility = View.VISIBLE
+
+                    }
+                }
+
+                override fun onStart(mediaPlayer: MediaPlayer?) {
+                }
+            })
         }
     }
 
@@ -180,7 +231,7 @@ class LoadTickAndSaveActivity :BaseActivity() {
                         }
                     }
 
-                    adapterDetail= AdapterDetail(arrayList)
+                    adapterDetail= AdapterDetail(arrayList,this@LoadTickAndSaveActivity)
                     rcvLoadTickOrSave.adapter = adapterDetail
 
                 }

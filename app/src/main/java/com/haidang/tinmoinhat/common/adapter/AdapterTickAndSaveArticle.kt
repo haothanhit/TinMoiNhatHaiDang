@@ -38,13 +38,14 @@ class AdapterTickAndSaveArticle(
             itemView.txt_source_save.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_save)
-            itemView.card_view_save.setOnClickListener { //on click
+            itemView.setOnClickListener { //on click
                 val intent = Intent(activity, LoadTickAndSaveActivity::class.java)
                 intent.putExtra("Article", item)
                 activity.startActivity(intent)
-                activity.finish()
 
             }
+            itemView.ivPlayVideoTickSave?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
+
             itemView.bt_delete_save.setOnClickListener {                 //remove 1 article
 
                 val json =(activity as BaseActivity).getSharedPrefsString(tickOrSave)

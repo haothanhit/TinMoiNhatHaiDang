@@ -8,10 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.adapter.AdapterMain
 import com.haidang.tinmoinhat.common.base.BaseFragment
@@ -19,13 +19,10 @@ import com.haidang.tinmoinhat.common.listener.EndlessRecyclerViewScrollListener
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.retrofit.APIClient
 import com.haidang.tinmoinhat.common.retrofit.APIInterface
-import com.haidang.tinmoinhat.ui.activity.MainActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_acticle.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 
 class ArticleFragment : BaseFragment() {
@@ -74,6 +71,7 @@ class ArticleFragment : BaseFragment() {
         val dividerHorizontal =
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         rcvArticle.addItemDecoration(dividerHorizontal)
+
         getData("0")            //get data first
         //load more
         val endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener =

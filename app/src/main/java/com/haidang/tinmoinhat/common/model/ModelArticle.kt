@@ -10,5 +10,5 @@ class ModelArticle :Serializable{
     val thumb: String? = ""
     val sourceLink: String? = ""
     val linkVideo: String? = ""
-    val isVideo: String? = ""
+    val isVideo: Boolean? = false
 }

@@ -42,7 +42,8 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
             itemView.txt_source_item_main.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main)
-            itemView.card_view_item.setOnClickListener { //on click
+            itemView.ivPlayVideoMain?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
+            itemView.setOnClickListener { //on click
                 //save relate
                 val json = Gson().toJson(arrArticle)
                 (activity as BaseActivity).saveSharedPrefsString(KEY_RELATE, json)
@@ -64,7 +65,8 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
             itemView.txt_source_item_main_ads.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main_ads)
-            itemView.card_view_item_ads.setOnClickListener {  //on click
+            itemView.ivPlayVideoMainAds?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
+            itemView.setOnClickListener {  //on click
                 //save relate
                 val json = Gson().toJson(arrArticle)
                 (activity as BaseActivity).saveSharedPrefsString(KEY_RELATE, json)

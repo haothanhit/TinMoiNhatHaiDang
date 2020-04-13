@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_size_1">1sp</dimen>
+    <dimen name="text_size_2">2sp</dimen>
+    <dimen name="text_size_3">3sp</dimen>
+    <dimen name="text_size_4">4sp</dimen>
+
     <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_9">9sp</dimen>
     <dimen name="text_size_8">8sp</dimen>
@@ -59,7 +64,9 @@
     <dimen name="dimen70dp">70dp</dimen>
     <dimen name="dimen75dp">75dp</dimen>
     <dimen name="dimen65dp">65dp</dimen>
-    <dimen name="img_size_main_1">80dp</dimen>
+    <dimen name="item_img_size_width">90dp</dimen>
+    <dimen name="item_img_size_height">80dp</dimen>
+
     <dimen name="img_size_relate">90dp</dimen>
 
     <dimen name="dimen46dp">46dp</dimen>

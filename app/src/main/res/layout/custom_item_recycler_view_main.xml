@@ -3,51 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="@dimen/dimen5dp">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+   >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen3dp">
+            android:layout_margin="@dimen/dimen10dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_main"
-                android:layout_marginLeft="@dimen/dimen5dp"
-                android:layout_width="@dimen/img_size_main_1"
-                android:layout_height="@dimen/img_size_main_1"
+                android:layout_width="@dimen/item_img_size_width"
+                android:layout_height="@dimen/item_img_size_height"
+                android:layout_marginRight="@dimen/dimen5dp"
                 app:cardCornerRadius="@dimen/dimen4dp"
                 android:layout_centerVertical="true"
                >
-
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/img_item_main"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible"
-                    android:scaleType="fitXY"/>
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/img_item_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:scaleType="fitXY"/>
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/ivPlayVideoMain"
+                        android:layout_width="@dimen/dimen30dp"
+                        android:layout_height="@dimen/dimen30dp"
+                        android:visibility="gone"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_play_video"
+                        />
+                </RelativeLayout>
+
 
             </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/txt_title_item_main"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/dimen5dp"
-                android:layout_marginTop="@dimen/dimen5dp"
-                android:layout_marginEnd="0dp"
-                android:layout_toEndOf="@+id/card_main"
-                android:text="Tieu de"
-                android:maxLines="3"
+                android:layout_toRightOf="@+id/card_main"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
                 android:lines="3"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="normal" />
+                android:maxLines="3"
+                android:text="Tieu de"
+                android:textSize="@dimen/text_size_16" />
 
 
             <TextView
@@ -55,18 +60,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_title_item_main"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/dimen5dp"
                 android:layout_marginTop="@dimen/dimen5dp"
-                android:layout_marginBottom="@dimen/dimen5dp"
-                android:layout_marginEnd="0dp"
-                android:layout_toEndOf="@+id/card_main"
                 android:text="Nguon"
                 android:textSize="@dimen/text_size_11"
-                android:textAllCaps="true"
-                android:lines="1"/>
+                android:lines="1"
+                android:layout_toRightOf="@+id/card_main" />
 
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

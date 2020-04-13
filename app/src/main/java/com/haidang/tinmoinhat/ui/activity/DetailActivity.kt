@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -31,6 +34,7 @@ import com.haidang.tinmoinhat.common.model.ModelArticle
 import com.haidang.tinmoinhat.common.model.ModelContent
 import com.haidang.tinmoinhat.common.retrofit.APIClientDetail
 import com.haidang.tinmoinhat.common.retrofit.APIInterface
+import com.universalvideoview.UniversalVideoView
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
@@ -83,6 +87,52 @@ class DetailActivity : BaseActivity() {
         setStateImageArticleSaved()
         ivSizeText.setOnClickListener {
             showDialogSetSizeText()
+        }
+        if(data?.isVideo!!){  // if article have video
+            frame_video.visibility=View.VISIBLE
+            Glide.with(this).load(data?.thumb).into(img_thumb)
+            videoView.setVideoURI(Uri.parse(data?.linkVideo))
+            media_controller.setOnLoadingView(R.layout.custom_load_view)
+            videoView.setMediaController(media_controller)
+
+            button_play.setOnClickListener{
+                button_play.visibility = View.GONE
+                img_thumb.visibility = View.GONE
+                videoView.start()
+            }
+            videoView.setVideoViewCallback(object :UniversalVideoView.VideoViewCallback{
+                override fun onBufferingStart(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onBufferingEnd(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onPause(mediaPlayer: MediaPlayer?) {
+                }
+
+                override fun onScaleChange(isFullscreen: Boolean) {
+                    if(isFullscreen){
+                        val layoutParams: ViewGroup.LayoutParams = frame_video.layoutParams
+                        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+                        frame_video.layoutParams = layoutParams
+                        //GONE the unconcerned views to leave room for video and controller
+                        frame_item.visibility = View.GONE
+                        rltHeaderDetail.visibility = View.GONE
+                    }else{
+                        val layoutParams: ViewGroup.LayoutParams = frame_video.layoutParams
+                        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                        layoutParams.height = resources.getDimension(R.dimen.dimen200dp).toInt()
+                        frame_video.layoutParams = layoutParams
+                        frame_item.visibility = View.VISIBLE
+                        rltHeaderDetail.visibility = View.VISIBLE
+
+                    }
+                }
+
+                override fun onStart(mediaPlayer: MediaPlayer?) {
+                }
+            })
         }
     }
 
@@ -366,7 +416,7 @@ class DetailActivity : BaseActivity() {
                         }
                     }
 
-                    adapterDetail= AdapterDetail(arrayList)
+                    adapterDetail= AdapterDetail(arrayList,this@DetailActivity)
                     recycler_view_details.adapter = adapterDetail
                     frame_item.visibility = View.VISIBLE
 

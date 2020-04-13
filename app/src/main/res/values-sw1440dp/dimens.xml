@@ -98,9 +98,11 @@
 	<dimen name="dimen_5dp">-20.00dp</dimen>
 	<dimen name="dimen_60dp">-240.00dp</dimen>
 	<dimen name="dimen_65dp">-260.00dp</dimen>
-	<dimen name="img_size_main_1">320.00dp</dimen>
 	<dimen name="img_size_relate">360.00dp</dimen>
+	<dimen name="item_img_size_height">320.00dp</dimen>
+	<dimen name="item_img_size_width">360.00dp</dimen>
 	<dimen name="dimen10sp">40.00sp</dimen>
+	<dimen name="text_size_1">4.00sp</dimen>
 	<dimen name="text_size_10">40.00sp</dimen>
 	<dimen name="text_size_11">44.00sp</dimen>
 	<dimen name="text_size_12">48.00sp</dimen>
@@ -111,6 +113,7 @@
 	<dimen name="text_size_17">68.00sp</dimen>
 	<dimen name="text_size_18">72.00sp</dimen>
 	<dimen name="text_size_19">76.00sp</dimen>
+	<dimen name="text_size_2">8.00sp</dimen>
 	<dimen name="text_size_20">80.00sp</dimen>
 	<dimen name="text_size_21">84.00sp</dimen>
 	<dimen name="text_size_22">88.00sp</dimen>
@@ -121,7 +124,9 @@
 	<dimen name="text_size_27">108.00sp</dimen>
 	<dimen name="text_size_28">112.00sp</dimen>
 	<dimen name="text_size_29">116.00sp</dimen>
+	<dimen name="text_size_3">12.00sp</dimen>
 	<dimen name="text_size_30">120.00sp</dimen>
+	<dimen name="text_size_4">16.00sp</dimen>
 	<dimen name="text_size_5">20.00sp</dimen>
 	<dimen name="text_size_6">24.00sp</dimen>
 	<dimen name="text_size_7">28.00sp</dimen>
