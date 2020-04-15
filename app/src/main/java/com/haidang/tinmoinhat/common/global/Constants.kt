@@ -24,6 +24,7 @@ class Constants {
     const val KEY_SIZE_MEDIUM = "sizeMedium"
     const val KEY_SIZE_BIG = "sizeBig"
     const val KEY_SIZE_VERY_BIG = "sizeVeryBig"
+      const val KEY_COUNT_ADS_FULL = "countADSFull"
 
 
   }

@@ -73,7 +73,6 @@ class ArticleFragment : BaseFragment() {
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         rcvArticle.addItemDecoration(dividerHorizontal)
         rcvArticle.showShimmerAdapter()
-        getData("0")            //get data first
         //load more
         val endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener =
             object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
@@ -92,6 +91,7 @@ class ArticleFragment : BaseFragment() {
             swipe_to_refresh.isRefreshing = false
 
         }
+        getData("0")            //get data first
 
     }
    var getDataDone:Boolean=false
@@ -111,7 +111,11 @@ class ArticleFragment : BaseFragment() {
                             mAdaper = AdapterMain(it, activity!!)
                             rcvArticle.adapter = mAdaper
                         } else {
+                            var posReal=mAdaper?.itemCount
                             mAdaper!!.addData(it)
+                            try {
+                                rcvArticle.scrollToPosition(posReal!!-5)
+                            }catch (ex:java.lang.Exception){}
                         }
 
                     } catch (ex: Exception) {

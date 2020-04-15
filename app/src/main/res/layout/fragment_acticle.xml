@@ -13,5 +13,6 @@
         app:shimmer_demo_shimmer_color="#f3f1f1"
         app:shimmer_demo_angle="20"
         app:shimmer_demo_layout="@layout/layout_loader_rcv_main"
+
         />
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

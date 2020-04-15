@@ -29,9 +29,9 @@ abstract class BaseActivity : AppCompatActivity() {
         val window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor= if (currentIsNight()) ContextCompat.getColor(this, R.color.black) else  ContextCompat.getColor(this, R.color.white)
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.statusBarColor= if (currentIsNight()) ContextCompat.getColor(this, R.color.black) else  ContextCompat.getColor(this, R.color.white)
+//        }
         val preferencesRelate =
             this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
         val isTheme = preferencesRelate.getInt(KEY_THEME, 1)
@@ -93,7 +93,22 @@ abstract class BaseActivity : AppCompatActivity() {
         val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
         return preferencesRelate.getString(key, "")!!
     }
-
+    /**
+     * get  SharedPreferences type Int
+     */
+    fun getSharedPrefsInt(key:String):Int {
+        val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
+        return preferencesRelate.getInt(key, 0)!!
+    }
+    /**
+     * save  SharedPreferences type Int
+     */
+    fun saveSharedPrefsInt(key:String,value:Int) {
+        val appSharedPrefs: SharedPreferences =
+            this.getSharedPreferences(key, Context.MODE_PRIVATE)
+        val prefsEditor = appSharedPrefs.edit()
+        prefsEditor.putInt(key, value).apply()
+    }
     /**
      * clear  SharedPreferences
      */

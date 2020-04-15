@@ -3,16 +3,11 @@ package com.haidang.tinmoinhat.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.MobileAds
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.Ads.CommonAds
-import com.haidang.tinmoinhat.common.Ads.CommonAds.Companion.mInterstitialAd
 import com.haidang.tinmoinhat.common.base.BaseActivity
-
-import java.lang.Exception
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_COUNT_ADS_FULL
 
 class SplashActivity : BaseActivity() {
     private var mDelayHandler: Handler? = null
@@ -54,6 +49,8 @@ class SplashActivity : BaseActivity() {
         try {
             MobileAds.initialize(this) {}
           CommonAds().loadAdsFulL(this)
+            clearSharedPrefs(KEY_COUNT_ADS_FULL)  //remove count ads full
+
         } catch (ex: Exception) {
         }
 
@@ -75,4 +72,5 @@ class SplashActivity : BaseActivity() {
 
         super.onDestroy()
     }
+
 }

@@ -7,13 +7,13 @@
     <ImageView
         android:id="@+id/img_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/dimen8dp"
         android:layout_marginRight="@dimen/dimen8dp"
         android:scaleType="fitXY"
-        android:layout_marginTop="@dimen/dimen2dp"
-        android:layout_marginBottom="@dimen/dimen2dp"
+        android:layout_marginTop="@dimen/dimen4dp"
+        android:layout_marginBottom="@dimen/dimen4dp"
         android:visibility="gone" />
 
     <TextView
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimen8dp"
         android:layout_marginRight="@dimen/dimen8dp"
-        android:layout_marginTop="@dimen/dimen2dp"
-        android:layout_marginBottom="@dimen/dimen2dp"
+        android:layout_marginTop="@dimen/dimen4dp"
+        android:layout_marginBottom="@dimen/dimen4dp"
         android:lineSpacingExtra="@dimen/dimen4dp"
         android:textColor="?attr/textColor"
         android:visibility="gone" />

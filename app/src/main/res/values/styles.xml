@@ -19,7 +19,7 @@
     </style>
     <!--    TabLayout-->
     <style name="MineCustomTablayout" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif-medium</item>
 
@@ -35,7 +35,7 @@
     <style name="LightTheme" parent="AppTheme">
         <item name="textColor">#000000</item>
         <item name="bgColor">#ffffff</item>
-        <item name="textTitle">@color/blue_white</item>
+        <item name="textTitle">@color/colorPrimary</item>
 
 
     </style>
@@ -43,7 +43,7 @@
     <style name="DarkTheme" parent="AppTheme">
         <item name="textColor">#ffffff</item>
         <item name="bgColor">#000000</item>
-        <item name="textTitle">@color/red</item>
+        <item name="textTitle">@color/colorPrimary</item>
 
     </style>
 

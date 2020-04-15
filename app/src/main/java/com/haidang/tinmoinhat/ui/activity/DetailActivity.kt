@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.LinearLayout
@@ -19,9 +18,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.haidang.tinmoinhat.R
+import com.haidang.tinmoinhat.common.Ads.CommonAds
 import com.haidang.tinmoinhat.common.adapter.AdapterDetail
 import com.haidang.tinmoinhat.common.adapter.AdapterRelate
 import com.haidang.tinmoinhat.common.base.BaseActivity
+import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_COUNT_ADS_FULL
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_FONT_SIZE
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RECENT_READING
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RELATE
@@ -43,9 +44,6 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -70,6 +68,11 @@ class DetailActivity : BaseActivity() {
 
     @SuppressLint("WrongConstant")
     private fun initView() {
+
+
+        //Ad Full
+        CountAds()
+
         ivBackDetail.setOnClickListener { onBackPressed() }
         var textTitle = data?.source?.substring(7)  //Bỏ chữ nguồn
         tvTitleDetail.text =
@@ -424,6 +427,7 @@ class DetailActivity : BaseActivity() {
                             if (img == "") {
                                 text = e.text()
                             }
+                            if(text!="" || img!="")
                             arrayList.add(ModelContent(text, img))
                         }
                     }
@@ -443,5 +447,20 @@ class DetailActivity : BaseActivity() {
         super.onDestroy()
         mCompositeDisposable?.clear()
     }
-
+    private fun CountAds() {
+        var count: Int = getSharedPrefsInt(KEY_COUNT_ADS_FULL)
+        if(count<3){
+            if (count == 2) {
+                if (CommonAds.mInterstitialAd != null && CommonAds.mInterstitialAd.isLoaded) {
+                    CommonAds.mInterstitialAd.show()
+                    saveSharedPrefsInt(KEY_COUNT_ADS_FULL,3)
+                }else{
+                    saveSharedPrefsInt(KEY_COUNT_ADS_FULL,2)
+                }
+            } else {
+                var a=count+1
+                saveSharedPrefsInt(KEY_COUNT_ADS_FULL,a)
+            }
+        }
+    }
 }

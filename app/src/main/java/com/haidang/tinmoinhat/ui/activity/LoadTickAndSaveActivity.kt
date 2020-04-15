@@ -241,6 +241,7 @@ class LoadTickAndSaveActivity :BaseActivity() {
                             if (img == "") {
                                 text = e.text()
                             }
+                            if(text!="" || img!="")
                             arrayList.add(ModelContent(text, img))
                         }
                     }
