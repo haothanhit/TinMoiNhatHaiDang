@@ -1,5 +1,6 @@
 package com.haidang.tinmoinhat.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,12 +37,13 @@ class HomeFragment: BaseFragment() {
 
     }
 
+    @SuppressLint("ResourceType")
     private fun setupViewPager() {
         adapter = ViewPagerAdapter(childFragmentManager!!) //viewpager
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit=PAGE_NUMBER
         tabLayout.setupWithViewPager(viewPager)
-        tabLayout.tabTextColors= if ((activity as BaseActivity).currentIsNight()) context!!.resources.getColorStateList(R.color.white) else  context!!.resources.getColorStateList(R.color.black)
+        tabLayout.tabTextColors= if ((activity as BaseActivity).currentIsNight()) context!!.resources.getColorStateList(R.drawable.tab_color_selector_night) else  context!!.resources.getColorStateList(R.drawable.tab_color_selector)
 
 
 

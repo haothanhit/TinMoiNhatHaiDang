@@ -27,5 +27,7 @@
     <string name="lon">Lớn</string>
     <string name="rat_lon">Rất lớn</string>
     <string name="dong">Đóng</string>
+    <string name="noi_dung_khac">Nội Dung Khác</string>
+    <string name="tin_lien_quan">Tin liên quan</string>
 
 </resources>

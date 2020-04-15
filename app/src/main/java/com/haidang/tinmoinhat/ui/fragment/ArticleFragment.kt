@@ -30,7 +30,6 @@ class ArticleFragment : BaseFragment() {
     private val TAG: String = ArticleFragment::class.java.getSimpleName()
     private var mAdaper: AdapterMain? = null
     val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
-
     companion object {
         @JvmStatic
         fun newInstance(mTabID: String) =
@@ -73,7 +72,7 @@ class ArticleFragment : BaseFragment() {
         val dividerHorizontal =
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         rcvArticle.addItemDecoration(dividerHorizontal)
-
+        rcvArticle.showShimmerAdapter()
         getData("0")            //get data first
         //load more
         val endlessRecyclerViewScrollListener: EndlessRecyclerViewScrollListener =
@@ -88,8 +87,9 @@ class ArticleFragment : BaseFragment() {
         rcvArticle.addOnScrollListener(endlessRecyclerViewScrollListener)
         //refresh data
         swipe_to_refresh.setOnRefreshListener {
-            mAdaper!!.clearData()
+            mAdaper?.clearData()
             getData("0")
+            swipe_to_refresh.isRefreshing = false
 
         }
 
@@ -105,12 +105,10 @@ class ArticleFragment : BaseFragment() {
             .subscribe({ success ->
                 success?.let {
                     (activity as BaseActivity).hideProgress()
+                    rcvArticle.hideShimmerAdapter()
+
                     getDataDone=true
                     try {
-                        if (swipe_to_refresh.isRefreshing) {
-                            swipe_to_refresh.isRefreshing = false
-                            mAdaper?.clearData()
-                        }
                         if (mAdaper == null) {
                             mAdaper = AdapterMain(it, activity!!)
                             rcvArticle.adapter = mAdaper

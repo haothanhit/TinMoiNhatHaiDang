@@ -131,21 +131,20 @@
                         <View
                             android:id="@+id/line"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="#414141" />
+                            android:layout_height="@dimen/dimen1dp"
+                            android:background="@color/gray_dark"
+                            android:layout_marginTop="@dimen/dimen5dp"
+                            android:layout_marginBottom="@dimen/dimen5dp"/>
 
                         <TextView
                             android:id="@+id/txt_tin_khac"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/line"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginBottom="8dp"
                             android:gravity="center"
-                            android:text="Nội Dung Khác"
-                            android:textSize="25dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/tin_lien_quan"
+                            android:textSize="@dimen/text_size_24"
                             android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView

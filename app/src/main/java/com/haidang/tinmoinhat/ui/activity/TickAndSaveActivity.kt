@@ -35,7 +35,6 @@ class TickAndSaveActivity :BaseActivity() {
         //Layout relate
         recycler_view_tick_or_save.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
-        recycler_view_tick_or_save.setHasFixedSize(true)
         val dividerHorizontal =
             DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
         recycler_view_tick_or_save.addItemDecoration(dividerHorizontal)
@@ -52,6 +51,7 @@ class TickAndSaveActivity :BaseActivity() {
             }
             arrayList.reverse()
             mAdaper= AdapterTickAndSaveArticle(arrayList, this,tickOrSave!!)
+            mAdaper?.setHasStableIds(true)
             recycler_view_tick_or_save.adapter =mAdaper
 
         }

@@ -20,10 +20,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         replaceFragment(R.id.container, HomeFragment(), false)
         navigation.performClick()
-        val preferencesRelate =
-            this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
-        val isTheme = preferencesRelate.getInt(KEY_THEME, 1)
-        setModeTheme(isTheme)
+
         llBottomNews.setOnClickListener(mOnclick)
         llBottomSettings.setOnClickListener(mOnclick)
         defaultTextBottomColor = tvBottomSettings.textColors.defaultColor

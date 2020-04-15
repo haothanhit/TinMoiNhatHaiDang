@@ -32,6 +32,10 @@ abstract class BaseActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor= if (currentIsNight()) ContextCompat.getColor(this, R.color.black) else  ContextCompat.getColor(this, R.color.white)
         }
+        val preferencesRelate =
+            this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
+        val isTheme = preferencesRelate.getInt(KEY_THEME, 1)
+        setModeTheme(isTheme)
     }
     fun currentIsNight():Boolean{ //false :light ,true :dark=night
         val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
