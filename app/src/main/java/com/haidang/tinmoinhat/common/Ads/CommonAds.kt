@@ -11,7 +11,7 @@ class CommonAds {
         var countShowAdFull = 0
     }
 
-    public fun loadAdsFulL(context: Context) {
+     fun loadAdsFulL(context: Context) {
         mInterstitialAd = InterstitialAd(context)
         mInterstitialAd.adUnitId = context.getString(R.string.ad_full_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())

@@ -27,10 +27,10 @@ class AdapterRelate(val arrArticle: ArrayList<ModelArticle>,val activity:Activit
 
     inner class MyViewHolder(itemView: View) : BaseViewHolder<ModelArticle>(itemView) {
         override fun bind(item: ModelArticle) {
-            itemView.txt_title_item_Relate.text = item?.title
-            itemView.txt_source_item_Relate.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_Relate)
+            itemView.txt_title_item_Relate.text = item?.title
+            itemView.txt_source_item_Relate.text = item?.source
             itemView.setOnClickListener { //on click
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("Article", item)

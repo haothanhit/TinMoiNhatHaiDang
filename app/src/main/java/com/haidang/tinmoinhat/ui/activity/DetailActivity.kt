@@ -51,7 +51,7 @@ class DetailActivity : BaseActivity() {
     private val TAG: String = DetailActivity::class.java.simpleName
     private var data: ModelArticle? = null
     private var isArticleSaved: Boolean = false
-    private var adapterDetail:AdapterDetail?=null
+    private var adapterDetail: AdapterDetail? = null
     val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,8 +79,8 @@ class DetailActivity : BaseActivity() {
             textTitle?.substring(0, textTitle.lastIndexOf("-")!!)?.trim()//set text title
         ivLoveArticle.setOnClickListener { saveOrRemoveArticle(isArticleSaved) }
         //AdView
-        val adRequest = AdRequest.Builder().build()
-        adView_detail.loadAd(adRequest)
+        adView_detail.loadAd(AdRequest.Builder().build())
+        adViewDetailBottom.loadAd(AdRequest.Builder().build())
         //Layout detail
         var linearLayoutManager =
             LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
@@ -101,19 +101,19 @@ class DetailActivity : BaseActivity() {
         ivSizeText.setOnClickListener {
             showDialogSetSizeText()
         }
-        if(data?.isVideo!!){  // if article have video
-            frame_video.visibility=View.VISIBLE
+        if (data?.isVideo!!) {  // if article have video
+            frame_video.visibility = View.VISIBLE
             Glide.with(this).load(data?.thumb).into(img_thumb)
             videoView.setVideoURI(Uri.parse(data?.linkVideo))
             media_controller.setOnLoadingView(R.layout.custom_load_view)
             videoView.setMediaController(media_controller)
 
-            button_play.setOnClickListener{
+            button_play.setOnClickListener {
                 button_play.visibility = View.GONE
                 img_thumb.visibility = View.GONE
                 videoView.start()
             }
-            videoView.setVideoViewCallback(object :UniversalVideoView.VideoViewCallback{
+            videoView.setVideoViewCallback(object : UniversalVideoView.VideoViewCallback {
                 override fun onBufferingStart(mediaPlayer: MediaPlayer?) {
                 }
 
@@ -124,7 +124,7 @@ class DetailActivity : BaseActivity() {
                 }
 
                 override fun onScaleChange(isFullscreen: Boolean) {
-                    if(isFullscreen){
+                    if (isFullscreen) {
                         val layoutParams: ViewGroup.LayoutParams = frame_video.layoutParams
                         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
                         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
@@ -132,7 +132,7 @@ class DetailActivity : BaseActivity() {
                         //GONE the unconcerned views to leave room for video and controller
                         frame_item.visibility = View.GONE
                         rltHeaderDetail.visibility = View.GONE
-                    }else{
+                    } else {
                         val layoutParams: ViewGroup.LayoutParams = frame_video.layoutParams
                         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
                         layoutParams.height = resources.getDimension(R.dimen.dimen200dp).toInt()
@@ -388,10 +388,11 @@ class DetailActivity : BaseActivity() {
 
 
     }
-    var getDataDone:Boolean=false
+
+    var getDataDone: Boolean = false
 
     fun getData() {
-       showProgress()
+        showProgress()
         val request = APIClientDetail.getClient(APIInterface::class.java)
         var disposable = request.getNews(data?.id!!)
             .retryUntil(BooleanSupplier { getDataDone })
@@ -399,8 +400,8 @@ class DetailActivity : BaseActivity() {
             .subscribeOn(Schedulers.io()) // execute the call asynchronously
             .subscribe({ success ->
                 success?.let {
-                  hideProgress()
-                    getDataDone=true
+                    hideProgress()
+                    getDataDone = true
                     var arrayList = ArrayList<ModelContent>()
                     val document: org.jsoup.nodes.Document = Jsoup.parse(it)
                     val element: Element = document.select("div.content-detail").first()
@@ -427,12 +428,12 @@ class DetailActivity : BaseActivity() {
                             if (img == "") {
                                 text = e.text()
                             }
-                            if(text!="" || img!="")
-                            arrayList.add(ModelContent(text, img))
+                            if (text != "" || img != "")
+                                arrayList.add(ModelContent(text, img))
                         }
                     }
 
-                    adapterDetail= AdapterDetail(arrayList,this@DetailActivity)
+                    adapterDetail = AdapterDetail(arrayList, this@DetailActivity)
                     recycler_view_details.adapter = adapterDetail
                     frame_item.visibility = View.VISIBLE
 
@@ -443,23 +444,30 @@ class DetailActivity : BaseActivity() {
         mCompositeDisposable.add(disposable)
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
         mCompositeDisposable?.clear()
     }
+
     private fun CountAds() {
         var count: Int = getSharedPrefsInt(KEY_COUNT_ADS_FULL)
-        if(count<3){
+        if (count < 3) {
             if (count == 2) {
-                if (CommonAds.mInterstitialAd != null && CommonAds.mInterstitialAd.isLoaded) {
-                    CommonAds.mInterstitialAd.show()
-                    saveSharedPrefsInt(KEY_COUNT_ADS_FULL,3)
-                }else{
-                    saveSharedPrefsInt(KEY_COUNT_ADS_FULL,2)
+                try {
+                    if (CommonAds.mInterstitialAd != null && CommonAds.mInterstitialAd.isLoaded) {
+                        CommonAds.mInterstitialAd.show()
+                        saveSharedPrefsInt(KEY_COUNT_ADS_FULL, 3)
+                    } else {
+                        saveSharedPrefsInt(KEY_COUNT_ADS_FULL, 2)
+                    }
+                } catch (ex: java.lang.Exception) {
+                    CommonAds().loadAdsFulL(this)
                 }
+
             } else {
-                var a=count+1
-                saveSharedPrefsInt(KEY_COUNT_ADS_FULL,a)
+                var a = count + 1
+                saveSharedPrefsInt(KEY_COUNT_ADS_FULL, a)
             }
         }
     }

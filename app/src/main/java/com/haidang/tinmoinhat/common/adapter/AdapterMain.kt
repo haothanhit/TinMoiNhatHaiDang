@@ -52,10 +52,10 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
 
     inner class MyViewHolder(itemView: View) : BaseViewHolder<ModelArticle>(itemView) {
         override fun bind(item: ModelArticle) {
-            itemView.txt_title_item_main.text = item?.title
-            itemView.txt_source_item_main.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_item_main)
+            itemView.txt_title_item_main.text = item?.title
+            itemView.txt_source_item_main.text = item?.source
             itemView.ivPlayVideoMain?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
             itemView.setOnClickListener { //on click
                 //save relate
@@ -73,12 +73,12 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
 
     inner class AdHolder(itemView: View) : BaseViewHolder<ModelArticle>(itemView) {
         override fun bind(item: ModelArticle) {
+            Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
+                .into(itemView.img_item_main_ads)
             val adRequest = AdRequest.Builder().build()
             itemView.ad_view_main_ads.loadAd(adRequest)
             itemView.txt_title_item_main_ads.text = item?.title
             itemView.txt_source_item_main_ads.text = item?.source
-            Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
-                .into(itemView.img_item_main_ads)
             itemView.ivPlayVideoMainAds?.visibility=if(item?.isVideo!!) View.VISIBLE else View.GONE
             itemView.setOnClickListener {  //on click
                 //save relate
@@ -117,9 +117,9 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
 
     override fun getItemViewType(position: Int): Int {
         if(position==0) return VIEW_ITEM_FIRST
-       return  when(position%9){
+       return  when(position%12){
             0->VIEW_ADS
-            2,6->VIEW_ITEM_1
+            5,10->VIEW_ITEM_1
             else->VIEW_ITEM
         }
     }

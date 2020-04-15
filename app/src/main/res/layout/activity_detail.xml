@@ -155,9 +155,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/txt_tin_khac"
-                            android:nestedScrollingEnabled="false">
+                            android:nestedScrollingEnabled="false"/>
+                        <com.google.android.gms.ads.AdView
+                            xmlns:ads="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/adViewDetailBottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/recycler_view_relate"
+                            android:descendantFocusability="blocksDescendants"
+                            ads:adSize="LARGE_BANNER"
+                            ads:adUnitId="@string/ad_banner" />
 
-                        </androidx.recyclerview.widget.RecyclerView>
                     </RelativeLayout>
                 </RelativeLayout>
             </FrameLayout>

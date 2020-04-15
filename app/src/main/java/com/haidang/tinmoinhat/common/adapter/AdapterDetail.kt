@@ -39,9 +39,9 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
         override fun bind(item: ModelContent, pos: Int) {
             if (item?.text.equals("")) {
                 if (!item?.img.equals("")) {
+                    Glide.with(itemView.context).load(item?.img).into((itemView.img_detail))
                     itemView.img_detail.visibility = View.VISIBLE
                     itemView.txt_detail.visibility = View.GONE
-                    Glide.with(itemView.context).load(item?.img).into((itemView.img_detail))
                 }
 
             }

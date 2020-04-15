@@ -34,10 +34,11 @@ class AdapterTickAndSaveArticle(
 
     inner class MyViewHolder(itemView: View) : BaseViewHoderPosition<ModelArticle>(itemView) {
         override fun bind(item: ModelArticle,pos:Int) {
-            itemView.txt_title_save.text = item?.title
-            itemView.txt_source_save.text = item?.source
             Glide.with(activity).load(item?.thumb).placeholder(R.drawable.img_place_holder)
                 .into(itemView.img_save)
+            itemView.txt_title_save.text = item?.title
+            itemView.txt_source_save.text = item?.source
+
             itemView.setOnClickListener { //on click
                 val intent = Intent(activity, LoadTickAndSaveActivity::class.java)
                 intent.putExtra("Article", item)
@@ -73,8 +74,13 @@ class AdapterTickAndSaveArticle(
                    val jsonSave = Gson().toJson(arrayList)
                 (activity as BaseActivity).saveSharedPrefsString(tickOrSave, jsonSave)
                 }
-                arrArticle.remove(item)
-                notifyItemRemoved(pos)
+
+                    arrArticle.removeAt(pos)
+                    notifyItemRemoved(pos)
+                    notifyItemRangeChanged(pos, arrArticle.size)
+
+
+
 //                Toast.makeText(activity, "Đã Xóa!", Toast.LENGTH_SHORT).show()
             }
 
