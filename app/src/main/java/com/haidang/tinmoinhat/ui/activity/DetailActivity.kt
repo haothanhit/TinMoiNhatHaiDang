@@ -58,6 +58,11 @@ class DetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (currentIsNight()) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.LightTheme)
+        }
         setContentView(R.layout.activity_detail)
         data = intent.getSerializableExtra("Article") as ModelArticle?
         initView()

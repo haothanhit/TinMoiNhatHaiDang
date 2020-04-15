@@ -52,6 +52,7 @@
             android:lines="3"
             android:maxLines="3"
             android:text="Tieu de"
+            android:textColor="?attr/textColor"
             android:textSize="@dimen/text_size_16" />
 
 
@@ -63,6 +64,7 @@
             android:layout_marginTop="@dimen/dimen5dp"
             android:text="Nguon"
             android:textSize="@dimen/text_size_11"
+            android:textColor="?attr/textColor"
             android:lines="1"
             android:layout_toRightOf="@+id/card_Relate" />
 

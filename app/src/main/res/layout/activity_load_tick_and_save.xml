@@ -29,6 +29,7 @@
             android:layout_toRightOf="@+id/ivBackLoad"
             android:maxLines="1"
             android:text="Title"
+            android:textColor="?attr/textTitle"
             android:textSize="@dimen/text_size_title" />
 
         <ImageView

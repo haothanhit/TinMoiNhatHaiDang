@@ -26,6 +26,7 @@
             android:layout_toLeftOf="@+id/xoa_tat_ca_save"
             android:textSize="@dimen/text_size_title"
             android:layout_marginLeft="@dimen/dimen10dp"
+            android:textColor="?attr/textTitle"
             android:maxLines="1"
             />
 

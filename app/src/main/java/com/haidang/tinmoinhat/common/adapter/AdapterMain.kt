@@ -23,17 +23,31 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
     RecyclerView.Adapter<BaseViewHolder<*>>() {
     private val VIEW_ITEM = 1
     private val VIEW_ADS = 2
+    private val VIEW_ITEM_1 = 3
+    private val VIEW_ITEM_FIRST=4
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         if (viewType == VIEW_ITEM) {
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.custom_item_recycler_view_main, parent, false)
             return MyViewHolder(v)
-        } else {
+        }else if(viewType==VIEW_ITEM_1){
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.custom_item_recycler_view_main_1, parent, false)
+            return MyViewHolder(v)
+        }
+        else if(viewType==VIEW_ITEM_FIRST){
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.custom_item_recycler_view_main_first, parent, false)
+            return MyViewHolder(v)
+        }
+        else {
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.custom_item_recycler_view_ads, parent, false)
             return AdHolder(v)
         }
     }
+
+
 
 
     inner class MyViewHolder(itemView: View) : BaseViewHolder<ModelArticle>(itemView) {
@@ -102,9 +116,12 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position % 6 == 0 && position != 0) {
-            VIEW_ADS
-        } else VIEW_ITEM
+        if(position==0) return VIEW_ITEM_FIRST
+       return  when(position%9){
+            0->VIEW_ADS
+            2,6->VIEW_ITEM_1
+            else->VIEW_ITEM
+        }
     }
 
 

@@ -105,8 +105,6 @@ class ArticleFragment : BaseFragment() {
             .subscribe({ success ->
                 success?.let {
                     (activity as BaseActivity).hideProgress()
-                    rcvArticle.hideShimmerAdapter()
-
                     getDataDone=true
                     try {
                         if (mAdaper == null) {
@@ -119,6 +117,7 @@ class ArticleFragment : BaseFragment() {
                     } catch (ex: Exception) {
                         Log.e(TAG, ex.message)
                     }
+                    rcvArticle.hideShimmerAdapter()
 
 
                 }

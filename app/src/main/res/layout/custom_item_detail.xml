@@ -25,5 +25,6 @@
         android:layout_marginTop="@dimen/dimen2dp"
         android:layout_marginBottom="@dimen/dimen2dp"
         android:lineSpacingExtra="@dimen/dimen4dp"
+        android:textColor="?attr/textColor"
         android:visibility="gone" />
 </RelativeLayout>

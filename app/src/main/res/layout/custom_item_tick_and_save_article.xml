@@ -52,6 +52,7 @@
             android:fontFamily="sans-serif-medium"
             android:lines="3"
             android:maxLines="3"
+            android:textColor="?attr/textColor"
             android:text="Tieu de"
             android:textSize="@dimen/text_size_16" />
 
@@ -63,6 +64,7 @@
             android:layout_below="@+id/txt_title_save"
             android:layout_marginTop="@dimen/dimen5dp"
             android:text="Nguon"
+            android:textColor="?attr/textColor"
             android:textSize="@dimen/text_size_11"
             android:lines="1"
             android:layout_toRightOf="@+id/card_TickSave" />
