@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rltHeaderTopic"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen56dp"
+        android:paddingLeft="@dimen/dimen10dp"
+        android:paddingRight="@dimen/dimen10dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/ivBackTopic"
+            android:layout_width="@dimen/dimen25dp"
+            android:layout_height="@dimen/dimen25dp"
+            android:src="@drawable/ic_arrow_back"/>
+        <TextView
+            android:id="@+id/tvTitleTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chon_chu_de"
+            android:layout_toRightOf="@+id/ivBackTopic"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/text_size_title"
+            android:textAlignment="center"
+            android:layout_marginRight="@dimen/dimen25dp"
+            android:maxLines="1"
+            android:textColor="?attr/textTitle"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen10dp"
+        android:text="@string/content_choose_topic"
+        android:layout_toRightOf="@+id/ivBackTopic"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_size_16"
+        android:layout_marginRight="@dimen/dimen25dp"
+        android:textColor="?attr/textColor"
+        />
+    <Button
+        android:layout_marginLeft="@dimen/dimen10dp"
+        android:layout_marginRight="@dimen/dimen10dp"
+        android:id="@+id/btnFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_18"
+        android:background="@drawable/bg_btn_close_dialog"
+        android:text="@string/hoan_thanh" />
+</LinearLayout>

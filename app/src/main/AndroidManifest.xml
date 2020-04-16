@@ -28,6 +28,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             ></activity>
         <activity
+            android:name=".ui.activity.ChooseTopic"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            ></activity>
+        <activity
             android:name=".ui.activity.InfoActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
