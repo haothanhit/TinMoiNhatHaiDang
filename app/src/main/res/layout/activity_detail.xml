@@ -164,6 +164,7 @@
                             android:layout_below="@+id/recycler_view_relate"
                             android:descendantFocusability="blocksDescendants"
                             ads:adSize="LARGE_BANNER"
+                            android:layout_centerHorizontal="true"
                             ads:adUnitId="@string/ad_banner" />
 
                     </RelativeLayout>

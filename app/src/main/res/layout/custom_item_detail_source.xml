@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/llCatAndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen8dp"
+        android:layout_marginRight="@dimen/dimen8dp"
+        android:layout_marginTop="@dimen/dimen5dp"
+        android:layout_marginBottom="@dimen/dimen5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:background="@drawable/bg_catandtime_detail"
+            android:id="@+id/tvCategoryDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textTitle"
+            android:fontFamily="sans-serif-medium"
+            android:paddingLeft="@dimen/dimen5dp"
+            android:paddingRight="@dimen/dimen5dp"
+            />
+        <ImageView
+            android:id="@+id/ivOclockDetail"
+            android:layout_width="@dimen/dimen20dp"
+            android:layout_height="@dimen/dimen20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_oclock"
+            android:layout_marginLeft="@dimen/dimen8dp"
+            android:layout_marginRight="@dimen/dimen8dp"
+            />
+
+        <TextView
+            android:id="@+id/tvTimeDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
+            android:fontFamily="sans-serif-medium"
+
+            />
+    </LinearLayout>
+
+</RelativeLayout>

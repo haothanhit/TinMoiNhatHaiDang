@@ -11,4 +11,5 @@ class ModelArticle :Serializable{
     val sourceLink: String? = ""
     val linkVideo: String? = ""
     val isVideo: Boolean? = false
+    val catid:String?=""
 }

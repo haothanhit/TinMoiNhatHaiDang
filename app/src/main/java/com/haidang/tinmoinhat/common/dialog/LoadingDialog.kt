@@ -8,45 +8,20 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
 import com.haidang.tinmoinhat.R
 
 class LoadingDialog(context: Context) : Dialog(context) {
-    private var animation: AnimationDrawable? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_loading)
-        setCancelable(false)
+        setCancelable(true)
+       setCanceledOnTouchOutside(true)
         window!!.setBackgroundDrawableResource(R.drawable.transparent)
-        val loadingImage = findViewById<View>(R.id.login_loading) as ImageView
-        val rltLoading = findViewById<View>(R.id.rltLoading) as RelativeLayout
-        rltLoading.setOnClickListener { dismiss() }
+        val login_loading = findViewById<View>(R.id.login_loading) as ImageView
+      Glide.with(context).load(R.drawable.ic_gif_loading).into(login_loading)
 
-
-        animation = loadingImage.background as AnimationDrawable
-    }
-    override fun show() {
-        try {
-            super.show()
-            animation?.start()
-        } catch (ignored: Exception) {
-        }
     }
 
-    override fun dismiss() {
-        try {
-            super.dismiss()
-            if (animation != null) {
-                animation?.stop()
-            }
-        } catch (ignored: Exception) {
-        }
-    }
-
-    override fun cancel() {
-        super.cancel()
-        if (animation != null) {
-            animation?.stop()
-        }
-    }
 }

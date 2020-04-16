@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_acticle.*
 
 class ArticleFragment : BaseFragment() {
     private var tabID: String? = ""
-    private val TAG: String = ArticleFragment::class.java.getSimpleName()
+    private val TAG: String = ArticleFragment::class.java.simpleName
     private var mAdaper: AdapterMain? = null
     val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
     companion object {

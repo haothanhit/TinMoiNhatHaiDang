@@ -12,17 +12,19 @@ import android.view.WindowManager
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.gson.Gson
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.dialog.LoadingDialog
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
+import com.haidang.tinmoinhat.common.global.Constants.Companion.getALLTopic
+import com.haidang.tinmoinhat.common.model.ModelTopic
 
 
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var currentFragment: Fragment
+    var listAllTopic: ArrayList<ModelTopic>? = getALLTopic()  // tat ca danh sach chu de
+    var listTopicCurrent: ArrayList<ModelTopic>? = getALLTopic()  // danh sach chu de nguoi dung da chon
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +38,30 @@ abstract class BaseActivity : AppCompatActivity() {
             this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
         val isTheme = preferencesRelate.getInt(KEY_THEME, 1)
         setModeTheme(isTheme)
-    }
-    fun currentIsNight():Boolean{ //false :light ,true :dark=night
-        val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return nightModeFlags==Configuration.UI_MODE_NIGHT_YES
 
     }
-    fun setModeTheme(mode:Int){ //0: time , 1 :light ,2:dark
+
+    fun getNameTopic(id:String):String { //false :light ,true :dark=night
+       if(listAllTopic==null) listAllTopic= getALLTopic()
+        var name =""
+        for(item in listAllTopic!!){
+            if(id == item.id)
+            {
+                name=item.name!!
+                break
+            }
+        }
+        return name
+    }
+
+    fun currentIsNight(): Boolean { //false :light ,true :dark=night
+        val nightModeFlags =
+            this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
+
+    }
+
+    fun setModeTheme(mode: Int) { //0: time , 1 :light ,2:dark
         val appSharedPrefs: SharedPreferences =    //save local mode Theme
             this.getSharedPreferences(KEY_THEME, Context.MODE_PRIVATE)
         val prefsEditor = appSharedPrefs.edit()
@@ -51,6 +70,7 @@ abstract class BaseActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(mode)
 
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
     }
@@ -77,45 +97,52 @@ abstract class BaseActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().show(showFragment).hide(currentFragment).commit();
         currentFragment = showFragment;
     }
+
     /**
      * save  SharedPreferences type String
      */
-    fun saveSharedPrefsString(key:String,value:String) {
+    fun saveSharedPrefsString(key: String, value: String) {
         val appSharedPrefs: SharedPreferences =
             this.getSharedPreferences(key, Context.MODE_PRIVATE)
         val prefsEditor = appSharedPrefs.edit()
         prefsEditor.putString(key, value).apply()
     }
+
     /**
      * get  SharedPreferences type String
      */
-    fun getSharedPrefsString(key:String):String {
+    fun getSharedPrefsString(key: String): String {
         val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
         return preferencesRelate.getString(key, "")!!
     }
+
     /**
      * get  SharedPreferences type Int
      */
-    fun getSharedPrefsInt(key:String):Int {
+    fun getSharedPrefsInt(key: String): Int {
         val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
         return preferencesRelate.getInt(key, 0)!!
     }
+
     /**
      * save  SharedPreferences type Int
      */
-    fun saveSharedPrefsInt(key:String,value:Int) {
+    fun saveSharedPrefsInt(key: String, value: Int) {
         val appSharedPrefs: SharedPreferences =
             this.getSharedPreferences(key, Context.MODE_PRIVATE)
         val prefsEditor = appSharedPrefs.edit()
         prefsEditor.putInt(key, value).apply()
     }
+
     /**
      * clear  SharedPreferences
      */
-    fun clearSharedPrefs(key:String) {
+    fun clearSharedPrefs(key: String) {
         val preferencesRelate = getSharedPreferences(key, MODE_PRIVATE)
         val prefsEditor = preferencesRelate.edit()
-        prefsEditor.clear().apply()    }
+        prefsEditor.clear().apply()
+    }
+
     /**
      * remove all back stack
      */
@@ -190,7 +217,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private var mDlg: Dialog? = null
 
-     fun showProgress() {
+    fun showProgress() {
         try {
             hideProgress()
             mDlg = LoadingDialog(this)
@@ -200,7 +227,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-     fun hideProgress() {
+    fun hideProgress() {
         if (mDlg != null) {
             mDlg?.dismiss()
             mDlg = null

@@ -411,6 +411,9 @@ class DetailActivity : BaseActivity() {
                         val title: String = document.select("h3.title").text()
                         // val source: String = document.select("p").first().text()
                         arrayList.add(ModelContent(title, ""))
+                        var getCatIDAndTime =
+                            data?.source?.substring( data?.source?.lastIndexOf("-")!!+1)?.trim()//set text title
+                        arrayList.add(ModelContent(data?.catid,getCatIDAndTime))
                         //  arrayList.add(ModelContent(source, ""))
 
                         //API mới

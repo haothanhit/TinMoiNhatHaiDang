@@ -15,11 +15,13 @@ import com.haidang.tinmoinhat.common.global.Constants
 import com.haidang.tinmoinhat.common.model.ModelContent
 import kotlinx.android.synthetic.main.custom_item_detail.view.*
 import kotlinx.android.synthetic.main.custom_item_detail_ads.view.*
+import kotlinx.android.synthetic.main.custom_item_detail_source.view.*
 
 class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activity) :
     RecyclerView.Adapter<BaseViewHoderPosition<*>>() {
     private val VIEW_ITEM = 1
     private val VIEW_ADS = 2
+    private val VIEW_ITEM_SOURCE = 3
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHoderPosition<*> {
@@ -27,7 +29,12 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.custom_item_detail, parent, false)
             return MyViewHolder(v)
-        } else {
+        } else if(viewType == VIEW_ITEM_SOURCE){
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.custom_item_detail_source, parent, false)
+            return CatAndTimeHolder(v)
+        }
+        else {
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.custom_item_detail_ads, parent, false)
             return AdHolder(v)
@@ -55,17 +62,17 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                             0 -> {
                                 itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_8)
+                                    activity.resources.getDimension(R.dimen.text_size_6)
                             }
                             arrContent.size - 1 -> {
                                 itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_7)
+                                    activity.resources.getDimension(R.dimen.text_size_5)
 
                             }
                             else -> {
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_6)
+                                    activity.resources.getDimension(R.dimen.text_size_5)
                             }
                         }
                     }
@@ -76,17 +83,17 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                             0 -> {
                                 itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_10)
+                                    activity.resources.getDimension(R.dimen.text_size_8)
                             }
                             arrContent.size - 1 -> {
                                 itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_9)
+                                    activity.resources.getDimension(R.dimen.text_size_7)
 
                             }
                             else -> {
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_8)
+                                    activity.resources.getDimension(R.dimen.text_size_7)
                             }
                         }
 
@@ -96,46 +103,6 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                             0 -> {
                                 itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
                                 itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_12)
-                            }
-                            arrContent.size - 1 -> {
-                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
-                                itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_11)
-
-                            }
-                            else -> {
-                                itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_10)
-                            }
-                        }
-
-                    }
-                    Constants.KEY_SIZE_VERY_BIG -> {
-                        when (pos) {
-                            0 -> {
-                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
-                                itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_14)
-                            }
-                            arrContent.size - 1-> {
-                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
-                                itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_13)
-
-                            }
-                            else -> {
-                                itemView.txt_detail.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_12)
-                            }
-                        }
-
-                    }
-                    else -> { //default is KEY_SIZE_MEDIUM
-                        when (pos) {
-                            0 -> {
-                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
-                                itemView.txt_detail.textSize =
                                     activity.resources.getDimension(R.dimen.text_size_10)
                             }
                             arrContent.size - 1 -> {
@@ -146,7 +113,47 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                             }
                             else -> {
                                 itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_9)
+                            }
+                        }
+
+                    }
+                    Constants.KEY_SIZE_VERY_BIG -> {
+                        when (pos) {
+                            0 -> {
+                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
+                                itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_12)
+                            }
+                            arrContent.size - 1-> {
+                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
+                                itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_11)
+
+                            }
+                            else -> {
+                                itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_11)
+                            }
+                        }
+
+                    }
+                    else -> { //default is KEY_SIZE_MEDIUM
+                        when (pos) {
+                            0 -> {
+                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
+                                itemView.txt_detail.textSize =
                                     activity.resources.getDimension(R.dimen.text_size_8)
+                            }
+                            arrContent.size - 1 -> {
+                                itemView.txt_detail.typeface = Typeface.DEFAULT_BOLD
+                                itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_7)
+
+                            }
+                            else -> {
+                                itemView.txt_detail.textSize =
+                                    activity.resources.getDimension(R.dimen.text_size_7)
                             }
                         }
                     }
@@ -159,7 +166,83 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
 
         }
     }
+    inner class CatAndTimeHolder(itemView: View) : BaseViewHoderPosition<ModelContent>(itemView) {
+        override fun bind(item: ModelContent, pos: Int) {
+            if(item?.text.equals("") && item?.img.equals("")){
+                itemView.llCatAndTime.visibility=View.GONE
+            }else{
+                if(item?.text.equals(""))   itemView.tvCategoryDetail.visibility=View.GONE
+                if(item?.img.equals(""))   itemView.tvTimeDetail.visibility=View.GONE
 
+                itemView.tvCategoryDetail.text= (activity as BaseActivity).getNameTopic(item?.text!!)
+                itemView.tvTimeDetail.text=item?.img
+                //get current size
+                when ((activity as BaseActivity).getSharedPrefsString(Constants.KEY_FONT_SIZE)) {
+                    Constants.KEY_SIZE_SMALL -> {
+                        itemView.tvCategoryDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_5)
+                        itemView.tvTimeDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_4)
+                        itemView.ivOclockDetail.layoutParams.height=
+                            activity.resources.getDimension(R.dimen.dimen11dp).toInt()
+                        itemView.ivOclockDetail.layoutParams.width=
+                            activity.resources.getDimension(R.dimen.dimen11dp).toInt()
+                        itemView.ivOclockDetail.requestLayout()
+                    }
+                    Constants.KEY_SIZE_MEDIUM -> {
+                        itemView.tvCategoryDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_6)
+                        itemView.tvTimeDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_5)
+                        itemView.ivOclockDetail.layoutParams.height=
+                            activity.resources.getDimension(R.dimen.dimen14dp).toInt()
+                        itemView.ivOclockDetail.layoutParams.width=
+                            activity.resources.getDimension(R.dimen.dimen14dp).toInt()
+                        itemView.ivOclockDetail.requestLayout()
+
+                    }
+                    Constants.KEY_SIZE_BIG -> {
+                        itemView.tvCategoryDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_7)
+                        itemView.tvTimeDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_6)
+                        itemView.ivOclockDetail.layoutParams.height=
+                            activity.resources.getDimension(R.dimen.dimen17dp).toInt()
+                        itemView.ivOclockDetail.layoutParams.width=
+                            activity.resources.getDimension(R.dimen.dimen17dp).toInt()
+                        itemView.ivOclockDetail.requestLayout()
+                    }
+                    Constants.KEY_SIZE_VERY_BIG -> {
+                        itemView.tvCategoryDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_8)
+                        itemView.tvTimeDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_7)
+                        itemView.ivOclockDetail.layoutParams.height=
+                            activity.resources.getDimension(R.dimen.dimen20dp).toInt()
+                        itemView.ivOclockDetail.layoutParams.width=
+                            activity.resources.getDimension(R.dimen.dimen20dp).toInt()
+                        itemView.ivOclockDetail.requestLayout()
+
+                    }
+                    else -> { //default is KEY_SIZE_MEDIUM
+                        itemView.tvCategoryDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_6)
+                        itemView.tvTimeDetail.textSize =
+                            activity.resources.getDimension(R.dimen.text_size_5)
+                        itemView.ivOclockDetail.layoutParams.height=
+                            activity.resources.getDimension(R.dimen.dimen14dp).toInt()
+                        itemView.ivOclockDetail.layoutParams.width=
+                            activity.resources.getDimension(R.dimen.dimen14dp).toInt()
+                        itemView.ivOclockDetail.requestLayout()
+                    }
+
+                }
+            }
+
+
+
+        }
+    }
     inner class AdHolder(itemView: View) : BaseViewHoderPosition<ModelContent>(itemView) {
         override fun bind(item: ModelContent, pos: Int) {
             val adRequest = AdRequest.Builder().build()
@@ -175,17 +258,17 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                 when ((activity as BaseActivity).getSharedPrefsString(Constants.KEY_FONT_SIZE)) {
                     Constants.KEY_SIZE_SMALL -> {
                         itemView.txt_detail_ads.textSize =
-                            activity.resources.getDimension(R.dimen.text_size_6)
+                            activity.resources.getDimension(R.dimen.text_size_5)
 
                     }
                     Constants.KEY_SIZE_MEDIUM -> {
                         itemView.txt_detail_ads.textSize =
-                            activity.resources.getDimension(R.dimen.text_size_8)
+                            activity.resources.getDimension(R.dimen.text_size_7)
 
                     }
                     Constants.KEY_SIZE_BIG -> {
                         itemView.txt_detail_ads.textSize =
-                            activity.resources.getDimension(R.dimen.text_size_10)
+                            activity.resources.getDimension(R.dimen.text_size_9)
 
                     }
                     Constants.KEY_SIZE_VERY_BIG -> {
@@ -195,7 +278,7 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                     }
                     else -> { //default is KEY_SIZE_MEDIUM
                         itemView.txt_detail_ads.textSize =
-                            activity.resources.getDimension(R.dimen.text_size_8)
+                            activity.resources.getDimension(R.dimen.text_size_11)
                     }
 
                 }
@@ -220,7 +303,7 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
     }
 
     override fun getItemViewType(position: Int): Int {
-        // if (position == 2) return VIEW_ADS
+        if(position==1) return  VIEW_ITEM_SOURCE
         if (position == 6) return VIEW_ADS
         if (arrContent.size > 25) {
             if (position == arrContent.size / 2) return VIEW_ADS
@@ -231,12 +314,19 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
 
     override fun onBindViewHolder(holder: BaseViewHoderPosition<*>, position: Int) {
 
-        if (holder is AdHolder) {
-            holder.bind(arrContent[position], position)
+        when (holder) {
+            is AdHolder -> {
+                holder.bind(arrContent[position], position)
 
-        } else if (holder is MyViewHolder) {
-            holder.bind(arrContent[position], position)
+            }
+            is MyViewHolder -> {
+                holder.bind(arrContent[position], position)
 
+            }
+            is CatAndTimeHolder -> {
+                holder.bind(arrContent[position], position)
+
+            }
         }
     }
 
