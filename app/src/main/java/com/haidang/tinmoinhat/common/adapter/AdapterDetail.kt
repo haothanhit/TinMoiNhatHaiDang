@@ -221,7 +221,7 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
 
     override fun getItemViewType(position: Int): Int {
         // if (position == 2) return VIEW_ADS
-        if (position == 5) return VIEW_ADS
+        if (position == 6) return VIEW_ADS
         if (arrContent.size > 25) {
             if (position == arrContent.size / 2) return VIEW_ADS
         }

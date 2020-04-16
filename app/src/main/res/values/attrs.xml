@@ -3,5 +3,6 @@
     <attr name="bgColor" format="color"/>
     <attr name="textColor" format="color"/>
     <attr name="textTitle" format="color"/>
+    <attr name="textColorGray" format="color"/>
 
 </resources>

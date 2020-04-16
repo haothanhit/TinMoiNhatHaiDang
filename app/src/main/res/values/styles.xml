@@ -36,6 +36,7 @@
         <item name="textColor">#000000</item>
         <item name="bgColor">#ffffff</item>
         <item name="textTitle">@color/colorPrimary</item>
+        <item name="textColorGray">@color/textColorGray</item>
 
 
     </style>
@@ -44,6 +45,7 @@
         <item name="textColor">#ffffff</item>
         <item name="bgColor">#000000</item>
         <item name="textTitle">@color/colorPrimary</item>
+        <item name="textColorGray">@color/textColorGray</item>
 
     </style>
 

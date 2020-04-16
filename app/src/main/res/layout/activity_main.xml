@@ -48,7 +48,7 @@
                  android:layout_marginLeft="5dp"
                  android:fontFamily="sans-serif-condensed-medium"
                  android:text="@string/tin_tuc"
-                 android:textColor="?attr/textColor"
+                 android:textColor="?attr/textColorGray"
                  android:textSize="@dimen/text_size_bottom" />
          </LinearLayout>
          <LinearLayout
@@ -71,7 +71,7 @@
                  android:layout_height="wrap_content"
                  android:fontFamily="sans-serif-condensed-medium"
                  android:text="@string/cai_dat"
-                 android:textColor="?attr/textColor"
+                 android:textColor="?attr/textColorGray"
                  android:textSize="@dimen/text_size_bottom"/>
          </LinearLayout>
      </LinearLayout>

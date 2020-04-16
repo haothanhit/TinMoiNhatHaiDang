@@ -23,7 +23,7 @@
                android:textAlignment="center"
                android:id="@+id/tvTitle"
                android:textSize="@dimen/text_size_24"
-               android:textColor="?attr/textColor"
+               android:textColor="?attr/textTitle"
 
                />
        </RelativeLayout>
@@ -312,20 +312,7 @@
            android:background="@color/gray_dark"
            android:layout_marginLeft="@dimen/dimen10dp"
            android:layout_marginRight="@dimen/dimen10dp"/>
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <com.google.android.gms.ads.AdView
-               xmlns:ads="http://schemas.android.com/apk/res-auto"
-               android:id="@+id/adView"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_centerHorizontal="true"
-               android:layout_alignParentBottom="true"
-               ads:adSize="LARGE_BANNER"
-               ads:adUnitId="@string/ad_banner">
-           </com.google.android.gms.ads.AdView>
-       </RelativeLayout>
+
 
    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

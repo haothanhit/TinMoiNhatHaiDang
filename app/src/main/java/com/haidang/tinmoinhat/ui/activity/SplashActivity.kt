@@ -11,7 +11,7 @@ import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_COUNT_ADS_FU
 
 class SplashActivity : BaseActivity() {
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 2000 //2 seconds
+    private val SPLASH_DELAY: Long = 1000 //1 seconds
 
 
 

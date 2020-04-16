@@ -15,5 +15,6 @@
     <color name="startusColor">#ffffff</color>
     <color name="colorSwitch">#45b314</color>
     <drawable name="transparent">#00000000</drawable>
+    <color name="textColorGray">#595959</color>
 
 </resources>
