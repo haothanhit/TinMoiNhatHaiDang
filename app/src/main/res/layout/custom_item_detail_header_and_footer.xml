@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_detail_header_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen8dp"
+        android:layout_marginRight="@dimen/dimen8dp"
+        android:layout_marginTop="@dimen/dimen4dp"
+        android:layout_marginBottom="@dimen/dimen4dp"
+        android:lineSpacingExtra="@dimen/dimen4dp"
+        android:fontFamily="?attr/fontOther"
+        android:textColor="?attr/textColor"
+        android:visibility="gone" />
+</RelativeLayout>

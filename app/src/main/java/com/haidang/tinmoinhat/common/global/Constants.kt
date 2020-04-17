@@ -31,19 +31,19 @@ class Constants {
 
       fun getALLTopic():ArrayList<ModelTopic>{
           var mCategories =ArrayList<ModelTopic>( )
-          mCategories.add(ModelTopic("0","Tin Hot"))
-          mCategories.add(ModelTopic("1","Thế Giới"))
-          mCategories.add(ModelTopic("2","Xã Hội"))
-          mCategories.add(ModelTopic("3","Văn Hóa"))
-          mCategories.add(ModelTopic("4","Kinh Tế"))
-          mCategories.add(ModelTopic("5","Công Nghệ"))
-          mCategories.add(ModelTopic("6","Thể Thao"))
-          mCategories.add(ModelTopic("7","Giải Trí"))
-          mCategories.add(ModelTopic("8","Pháp Luật"))
-          mCategories.add(ModelTopic("9","Giáo Dục"))
-          mCategories.add(ModelTopic("10","Sức Khỏe"))
-          mCategories.add(ModelTopic("11","Nhà Đất"))
-          mCategories.add(ModelTopic("12","Xe Cộ"))
+          mCategories.add(ModelTopic("0","Tin hot"))
+          mCategories.add(ModelTopic("1","Thế giới"))
+          mCategories.add(ModelTopic("2","Xã hội"))
+          mCategories.add(ModelTopic("3","Văn hóa"))
+          mCategories.add(ModelTopic("4","Kinh tế"))
+          mCategories.add(ModelTopic("5","Công nghệ"))
+          mCategories.add(ModelTopic("6","Thể thao"))
+          mCategories.add(ModelTopic("7","Giải trí"))
+          mCategories.add(ModelTopic("8","Pháp luật"))
+          mCategories.add(ModelTopic("9","Giáo dục"))
+          mCategories.add(ModelTopic("10","Sức khỏe"))
+          mCategories.add(ModelTopic("11","Nhà đất"))
+          mCategories.add(ModelTopic("12","Xe cộ"))
           return  mCategories
 
       }

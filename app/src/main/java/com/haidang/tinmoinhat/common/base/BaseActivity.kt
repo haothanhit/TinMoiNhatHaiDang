@@ -24,7 +24,8 @@ import com.haidang.tinmoinhat.common.model.ModelTopic
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var currentFragment: Fragment
     var listAllTopic: ArrayList<ModelTopic>? = getALLTopic()  // tat ca danh sach chu de
-    var listTopicCurrent: ArrayList<ModelTopic>? = getALLTopic()  // danh sach chu de nguoi dung da chon
+    var listTopicCurrent: ArrayList<ModelTopic>? =
+        getALLTopic()  // danh sach chu de nguoi dung da chon
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +42,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    fun getNameTopic(id:String):String { //false :light ,true :dark=night
-       if(listAllTopic==null) listAllTopic= getALLTopic()
-        var name =""
-        for(item in listAllTopic!!){
-            if(id == item.id)
-            {
-                name=item.name!!
+    fun getNameTopic(id: String): String { //false :light ,true :dark=night
+        if (listAllTopic == null) listAllTopic = getALLTopic()
+        var name = ""
+        for (item in listAllTopic!!) {
+            if (id == item.id) {
+                name = item.name!!
                 break
             }
         }

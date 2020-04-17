@@ -29,6 +29,7 @@
                     android:layout_margin="@dimen/dimen5dp"
                     android:text="@string/dieu_khoan_su_dung"
                     android:textColor="?attr/textTitle"
+                    android:fontFamily="?attr/fontOther"
                     android:textSize="@dimen/text_size_22" />
 
                 <TextView

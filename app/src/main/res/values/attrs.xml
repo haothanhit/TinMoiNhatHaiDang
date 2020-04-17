@@ -4,5 +4,6 @@
     <attr name="textColor" format="color"/>
     <attr name="textTitle" format="color"/>
     <attr name="textColorGray" format="color"/>
+    <attr name="fontOther" format="string"/>
 
 </resources>

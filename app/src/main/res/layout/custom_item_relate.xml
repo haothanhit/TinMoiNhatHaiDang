@@ -48,7 +48,6 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/card_Relate"
             android:ellipsize="end"
-            android:fontFamily="sans-serif"
             android:lines="3"
             android:maxLines="3"
             android:text="Tieu de"

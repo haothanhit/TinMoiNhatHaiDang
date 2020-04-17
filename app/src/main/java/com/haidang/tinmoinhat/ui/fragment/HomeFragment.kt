@@ -1,7 +1,6 @@
 package com.haidang.tinmoinhat.ui.fragment
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +10,6 @@ import com.haidang.tinmoinhat.common.adapter.ViewPagerAdapter
 import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.base.BaseFragment
 import com.haidang.tinmoinhat.common.global.Constants.Companion.PAGE_NUMBER
-
-import com.haidang.tinmoinhat.ui.activity.ChooseTopic
-import com.haidang.tinmoinhat.ui.activity.MainActivity
-
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
@@ -51,12 +46,15 @@ class HomeFragment : BaseFragment() {
         viewPager.offscreenPageLimit = PAGE_NUMBER
         tabLayout.setupWithViewPager(viewPager)
 
-        tabLayout.tabTextColors= if ((activity as BaseActivity).currentIsNight()) context!!.resources.getColorStateList(R.drawable.tab_color_selector_night) else  context!!.resources.getColorStateList(R.drawable.tab_color_selector)
+        tabLayout.tabTextColors =
+            if ((activity as BaseActivity).currentIsNight()) context!!.resources.getColorStateList(R.drawable.tab_color_selector_night) else context!!.resources.getColorStateList(
+                R.drawable.tab_color_selector
+            )
 
-        ivNavigationBar.setOnClickListener {
-            val intent = Intent(context, ChooseTopic::class.java)
-            startActivity(intent)
-        }
+//        ivNavigationBar.setOnClickListener {
+//            val intent = Intent(context, ChooseTopic::class.java)
+//            startActivity(intent)
+//        }
 
 
     }

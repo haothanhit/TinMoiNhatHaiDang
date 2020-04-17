@@ -4,13 +4,31 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
    >
-
-    <ImageView
-        android:layout_width="@dimen/dimen150dp"
-        android:layout_height="@dimen/dimen150dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_app"
-        />
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Báo chí"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_60"
+            android:fontFamily="?attr/fontOther"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VN"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_60"
+            android:fontFamily="?attr/fontOther"
+
+            />
+    </LinearLayout>
+
+
 
 </RelativeLayout>

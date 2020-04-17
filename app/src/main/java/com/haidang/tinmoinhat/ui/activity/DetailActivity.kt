@@ -150,6 +150,7 @@ class DetailActivity : BaseActivity() {
     }
 
     var dialog: Dialog? = null  //show dialog
+    var sizeCurrent = ""
 
     @SuppressLint("ResourceType")
     private fun showDialogSetSizeText() {
@@ -182,7 +183,7 @@ class DetailActivity : BaseActivity() {
             val btnCloseDialog = dialog!!.findViewById(R.id.btnCloseDialog) as Button
             btnCloseDialog.setOnClickListener { dialog!!.dismiss() }
             //get current size
-            val sizeCurrent: String = getSharedPrefsString(KEY_FONT_SIZE)
+            sizeCurrent = getSharedPrefsString(KEY_FONT_SIZE)
             when (sizeCurrent) {
                 KEY_SIZE_SMALL -> {
                     llSmallDialog.setBackgroundResource(R.color.colorPrimary)
@@ -200,35 +201,48 @@ class DetailActivity : BaseActivity() {
                     llVeryBigDialog.setBackgroundResource(R.color.colorPrimary)
                     tvVeryBigDialog.setTextColor(resources.getColor(R.color.white))
                 }
-                else -> { //default is KEY_SIZE_MEDIUM
-                    llMediumDialog.setBackgroundResource(R.color.colorPrimary)
-                    tvMediumDialog.setTextColor(resources.getColor(R.color.white))
+                else -> { //default is KEY_SIZE_SMALL
+                    llSmallDialog.setBackgroundResource(R.color.colorPrimary)
+                    tvSmallDialog.setTextColor(resources.getColor(R.color.white))
                 }
 
             }
             llSmallDialog.setOnClickListener {
-                saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_SMALL)
-                recycler_view_details.removeAllViews()
-                adapterDetail?.notifyDataSetChanged()
+                if (sizeCurrent != KEY_SIZE_SMALL) {
+                    saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_SMALL)
+                    recycler_view_details.removeAllViews()
+                    adapterDetail?.notifyDataSetChanged()
+                }
                 dialog!!.dismiss()
+
             }
             llMediumDialog.setOnClickListener {
-                saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_MEDIUM)
-                recycler_view_details.removeAllViews()
-                adapterDetail?.notifyDataSetChanged()
+                if (sizeCurrent != KEY_SIZE_MEDIUM) {
+                    saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_MEDIUM)
+                    recycler_view_details.removeAllViews()
+                    adapterDetail?.notifyDataSetChanged()
+                }
                 dialog!!.dismiss()
+
+
             }
             llBigDialog.setOnClickListener {
-                saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_BIG)
-                recycler_view_details.removeAllViews()
-                adapterDetail?.notifyDataSetChanged()
+                if (sizeCurrent != KEY_SIZE_BIG) {
+                    saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_BIG)
+                    recycler_view_details.removeAllViews()
+                    adapterDetail?.notifyDataSetChanged()
+                }
                 dialog!!.dismiss()
+
             }
             llVeryBigDialog.setOnClickListener {
-                saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_VERY_BIG)
-                recycler_view_details.removeAllViews()
-                adapterDetail?.notifyDataSetChanged()
+                if (sizeCurrent != KEY_SIZE_VERY_BIG) {
+                    saveSharedPrefsString(KEY_FONT_SIZE, KEY_SIZE_VERY_BIG)
+                    recycler_view_details.removeAllViews()
+                    adapterDetail?.notifyDataSetChanged()
+                }
                 dialog!!.dismiss()
+
             }
 
             dialog!!.show()
@@ -412,8 +426,9 @@ class DetailActivity : BaseActivity() {
                         // val source: String = document.select("p").first().text()
                         arrayList.add(ModelContent(title, ""))
                         var getCatIDAndTime =
-                            data?.source?.substring( data?.source?.lastIndexOf("-")!!+1)?.trim()//set text title
-                        arrayList.add(ModelContent(data?.catid,getCatIDAndTime))
+                            data?.source?.substring(data?.source?.lastIndexOf("-")!! + 1)
+                                ?.trim()//set text title
+                        arrayList.add(ModelContent(data?.catid, getCatIDAndTime))
                         //  arrayList.add(ModelContent(source, ""))
 
                         //API mới

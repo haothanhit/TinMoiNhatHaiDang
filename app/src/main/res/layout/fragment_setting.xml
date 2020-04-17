@@ -24,6 +24,7 @@
                android:id="@+id/tvTitle"
                android:textSize="@dimen/text_size_24"
                android:textColor="?attr/textTitle"
+               android:fontFamily="?attr/fontOther"
 
                />
        </RelativeLayout>

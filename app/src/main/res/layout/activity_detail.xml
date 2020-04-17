@@ -143,11 +143,11 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/line"
                             android:gravity="center"
-                            android:fontFamily="sans-serif"
                             android:text="@string/tin_lien_quan"
                             android:textSize="@dimen/text_size_24"
                             android:textColor="?attr/textColor"
-                            android:textStyle="bold" />
+                            android:fontFamily="?attr/fontOther"
+                             />
 
                         <androidx.recyclerview.widget.RecyclerView
 

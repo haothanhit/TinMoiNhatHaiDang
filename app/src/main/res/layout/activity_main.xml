@@ -25,7 +25,7 @@
          android:background="@android:color/transparent"
          android:layout_alignParentBottom="true"
          android:layout_width="match_parent"
-         android:layout_height="@dimen/dimen55dp">
+         android:layout_height="@dimen/dimen40dp">
          <LinearLayout
              android:layout_margin="@dimen/dimen2dp"
              android:id="@+id/llBottomNews"
@@ -45,8 +45,7 @@
                  android:id="@+id/tvBottomNews"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 android:fontFamily="sans-serif-condensed-medium"
+                 android:layout_marginLeft="@dimen/dimen5dp"
                  android:text="@string/tin_tuc"
                  android:textColor="?attr/textColorGray"
                  android:textSize="@dimen/text_size_bottom" />
@@ -66,13 +65,12 @@
                  android:src="@drawable/ic_bottom_setting"/>
              <TextView
                  android:id="@+id/tvBottomSettings"
-                 android:layout_marginLeft="5dp"
+                 android:layout_marginLeft="@dimen/dimen5dp"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:fontFamily="sans-serif-condensed-medium"
                  android:text="@string/cai_dat"
                  android:textColor="?attr/textColorGray"
-                 android:textSize="@dimen/text_size_bottom"/>
+                 android:textSize="@dimen/text_size_18"/>
          </LinearLayout>
      </LinearLayout>
 
