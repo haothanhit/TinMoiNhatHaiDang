@@ -13,14 +13,11 @@ import com.haidang.tinmoinhat.common.base.BaseActivity
 import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_RECENT_READING
 import com.haidang.tinmoinhat.common.model.ModelArticle
 import kotlinx.android.synthetic.main.activity_tick_and_save.*
-import java.lang.Exception
-import java.util.*
-import kotlin.collections.ArrayList
 
-class TickAndSaveActivity :BaseActivity() {
-  private  var tickOrSave: String?="" // recentReading   or
-    var arrayList =ArrayList<ModelArticle>()
-    private var mAdaper:AdapterTickAndSaveArticle?=null
+class TickAndSaveActivity : BaseActivity() {
+    private var tickOrSave: String? = "" // recentReading   or saved acrticle
+    var arrayList = ArrayList<ModelArticle>()
+    private var mAdaper: AdapterTickAndSaveArticle? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +40,7 @@ class TickAndSaveActivity :BaseActivity() {
         val dividerHorizontal =
             DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
         recycler_view_tick_or_save.addItemDecoration(dividerHorizontal)
-       var json= getSharedPrefsString(tickOrSave!!)
+        var json = getSharedPrefsString(tickOrSave!!)
         val type = object : TypeToken<ArrayList<ModelArticle>>() {}.type
         if (json != "") {
             try {
@@ -55,12 +52,15 @@ class TickAndSaveActivity :BaseActivity() {
                 arrayList.add(a)
             }
             arrayList.reverse()
-            mAdaper= AdapterTickAndSaveArticle(arrayList, this,tickOrSave!!)
+            mAdaper = AdapterTickAndSaveArticle(arrayList, this, tickOrSave!!)
             mAdaper?.setHasStableIds(true)
-            recycler_view_tick_or_save.adapter =mAdaper
+            recycler_view_tick_or_save.adapter = mAdaper
 
         }
-        titleTickSave.text=if(tickOrSave.equals(KEY_RECENT_READING)) getString(R.string.tin_doc_gan_day)else getString(R.string.tin_da_luu)
+        titleTickSave.text =
+            if (tickOrSave.equals(KEY_RECENT_READING)) getString(R.string.tin_doc_gan_day) else getString(
+                R.string.tin_da_luu
+            )
 
         xoa_tat_ca_save.setOnClickListener {
             clearSharedPrefs(tickOrSave!!)

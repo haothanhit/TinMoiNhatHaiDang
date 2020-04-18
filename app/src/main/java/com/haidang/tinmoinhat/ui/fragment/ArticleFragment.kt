@@ -30,6 +30,7 @@ class ArticleFragment : BaseFragment() {
     private val TAG: String = ArticleFragment::class.java.simpleName
     private var mAdaper: AdapterMain? = null
     val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
+
     companion object {
         @JvmStatic
         fun newInstance(mTabID: String) =
@@ -94,7 +95,8 @@ class ArticleFragment : BaseFragment() {
         getData("0")            //get data first
 
     }
-   var getDataDone:Boolean=false
+
+    var getDataDone: Boolean = false
     fun getData(page: String) {
         (activity as BaseActivity).showProgress()
         val request = APIClient.getClient(APIInterface::class.java)
@@ -105,17 +107,18 @@ class ArticleFragment : BaseFragment() {
             .subscribe({ success ->
                 success?.let {
                     (activity as BaseActivity).hideProgress()
-                    getDataDone=true
+                    getDataDone = true
                     try {
                         if (mAdaper == null) {
                             mAdaper = AdapterMain(it, activity!!)
                             rcvArticle.adapter = mAdaper
                         } else {
-                            var posReal=mAdaper?.itemCount
+                            var posReal = mAdaper?.itemCount
                             mAdaper!!.addData(it)
                             try {
-                                rcvArticle.scrollToPosition(posReal!!-5)
-                            }catch (ex:java.lang.Exception){}
+                                rcvArticle.scrollToPosition(posReal!! - 5)
+                            } catch (ex: java.lang.Exception) {
+                            }
                         }
 
                     } catch (ex: Exception) {
@@ -131,6 +134,7 @@ class ArticleFragment : BaseFragment() {
         mCompositeDisposable.add(disposable)
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
         mCompositeDisposable?.clear()

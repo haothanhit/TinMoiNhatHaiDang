@@ -29,12 +29,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val window = this.window
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            window.statusBarColor= if (currentIsNight()) ContextCompat.getColor(this, R.color.black) else  ContextCompat.getColor(this, R.color.white)
-//        }
         val preferencesRelate =
             this.getSharedPreferences(KEY_THEME, MODE_PRIVATE)
         val isTheme = preferencesRelate.getInt(KEY_THEME, 1)

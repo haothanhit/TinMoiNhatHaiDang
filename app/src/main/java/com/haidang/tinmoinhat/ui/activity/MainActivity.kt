@@ -6,7 +6,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.haidang.tinmoinhat.R
 import com.haidang.tinmoinhat.common.base.BaseActivity
-import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_THEME
 import com.haidang.tinmoinhat.common.global.Constants.Companion.TAB_HOME
 import com.haidang.tinmoinhat.common.global.Constants.Companion.TAB_SETTING
 import com.haidang.tinmoinhat.ui.fragment.HomeFragment

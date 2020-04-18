@@ -51,11 +51,6 @@ class HomeFragment : BaseFragment() {
                 R.drawable.tab_color_selector
             )
 
-//        ivNavigationBar.setOnClickListener {
-//            val intent = Intent(context, ChooseTopic::class.java)
-//            startActivity(intent)
-//        }
-
 
     }
 

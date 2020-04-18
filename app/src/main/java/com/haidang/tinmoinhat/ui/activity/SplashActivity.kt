@@ -12,35 +12,10 @@ import com.haidang.tinmoinhat.common.global.Constants.Companion.KEY_COUNT_ADS_FU
 class SplashActivity : BaseActivity() {
     private var mDelayHandler: Handler? = null
     private val SPLASH_DELAY: Long = 1000 //1 seconds
-
-
-
-
     internal val mRunnable: Runnable = Runnable {
-//        if (!isFinishing) {
-//            if (mInterstitialAd.isLoaded) {
-//                mInterstitialAd.show()
-//                mInterstitialAd.adListener = object : AdListener() {
-//                    override fun onAdClosed() {
-//                        val intent = Intent(applicationContext, MainActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
-//                        CommonAds().loadAdsFulL(applicationContext)
-//
-//                    }
-//                }
-//            } else {
-//                val intent = Intent(applicationContext, MainActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//
-//
-//        }else {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
-      //  }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

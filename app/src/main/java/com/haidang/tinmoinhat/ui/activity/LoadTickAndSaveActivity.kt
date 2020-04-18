@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.LinearLayout
@@ -25,14 +24,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BooleanSupplier
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_load_tick_and_save.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoadTickAndSaveActivity :BaseActivity() {
     private val TAG: String = LoadTickAndSaveActivity::class.java.simpleName
