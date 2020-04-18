@@ -116,7 +116,7 @@ class AdapterMain(val arrArticle: ArrayList<ModelArticle>, val activity: Activit
     }
 
     override fun getItemViewType(position: Int): Int {
-        if(position==0) return VIEW_ITEM_FIRST
+        if(position==0) return VIEW_ITEM_1
        return  when(position%12){
             0->VIEW_ADS
             5,10->VIEW_ITEM_1

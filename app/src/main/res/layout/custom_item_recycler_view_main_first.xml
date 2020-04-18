@@ -47,9 +47,8 @@
                      android:layout_marginTop="@dimen/dimen5dp"
                      android:ellipsize="end"
                      android:maxLines="3"
-                     android:text="Tieu de"
                      android:textColor="@color/white"
-                     android:textSize="@dimen/text_size_17" />
+                     android:textSize="@dimen/text_size_item_title_article" />
 
 
                  <TextView
@@ -61,7 +60,7 @@
                      android:layout_marginLeft="@dimen/dimen5dp"
                      android:text="Nguon"
                      android:textColor="@color/white"
-                     android:textSize="@dimen/text_size_12"
+                     android:textSize="@dimen/text_size_item_source_article"
                      android:layout_marginBottom="@dimen/dimen10dp"
                      />
              </LinearLayout>

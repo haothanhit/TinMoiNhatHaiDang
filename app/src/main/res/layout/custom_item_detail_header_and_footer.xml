@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/dimen4dp"
         android:layout_marginBottom="@dimen/dimen4dp"
         android:lineSpacingExtra="@dimen/dimen4dp"
-        android:fontFamily="?attr/fontOther"
+        android:textStyle="bold"
         android:textColor="?attr/textColor"
         android:visibility="gone" />
 </RelativeLayout>

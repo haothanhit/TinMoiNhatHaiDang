@@ -32,5 +32,7 @@
     <string name="chon_chu_de">Chọn chủ đề</string>
     <string name="content_choose_topic">Chọn ít nhất 3 chủ đề bạn muốn theo để chúng tôi có thể giúp bạn cá nhân hóa trải nghiệm trên HIT.</string>
     <string name="hoan_thanh">Hoàn thành</string>
+    <string name="bao_chi">Báo Chí</string>
+    <string name="vn">VN</string>
 
 </resources>

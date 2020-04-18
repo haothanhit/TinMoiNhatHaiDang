@@ -141,5 +141,7 @@
 	<dimen name="text_size_8">28.44sp</dimen>
 	<dimen name="text_size_9">32.00sp</dimen>
 	<dimen name="text_size_bottom">71.11sp</dimen>
+	<dimen name="text_size_item_source_article">39.11sp</dimen>
+	<dimen name="text_size_item_title_article">49.78sp</dimen>
 	<dimen name="text_size_title">78.22sp</dimen>
 </resources>

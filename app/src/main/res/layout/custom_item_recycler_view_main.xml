@@ -50,9 +50,8 @@
                 android:ellipsize="end"
                 android:lines="3"
                 android:maxLines="3"
-                android:text="Tieu de"
                 android:textColor="?attr/textColor"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_item_title_article" />
 
 
             <TextView
@@ -61,8 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_title_item_main"
                 android:layout_marginTop="@dimen/dimen5dp"
-                android:text="Nguon"
-                android:textSize="@dimen/text_size_11"
+                android:textSize="@dimen/text_size_item_source_article"
                 android:lines="1"
                 android:textColor="?attr/textColor"
                 android:layout_toRightOf="@+id/card_main" />

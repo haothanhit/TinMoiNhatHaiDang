@@ -56,11 +56,11 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                         when (pos) {
                             0 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_6)
+                                    activity.resources.getDimension(R.dimen.text_size_7)
                             }
                             arrContent.size - 1 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_5)
+                                    activity.resources.getDimension(R.dimen.text_size_6)
                             }
                         }
                     }
@@ -70,11 +70,11 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                         when (pos) {
                             0 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_8)
+                                    activity.resources.getDimension(R.dimen.text_size_9)
                             }
                             arrContent.size - 1 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_7)
+                                    activity.resources.getDimension(R.dimen.text_size_8)
 
                             }
                         }
@@ -84,11 +84,11 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                         when (pos) {
                             0 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_10)
+                                    activity.resources.getDimension(R.dimen.text_size_11)
                             }
                             arrContent.size - 1 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_9)
+                                    activity.resources.getDimension(R.dimen.text_size_10)
 
                             }
                         }
@@ -98,11 +98,11 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                         when (pos) {
                             0 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_12)
+                                    activity.resources.getDimension(R.dimen.text_size_13)
                             }
                             arrContent.size - 1 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_11)
+                                    activity.resources.getDimension(R.dimen.text_size_12)
                             }
                         }
 
@@ -111,11 +111,11 @@ class AdapterDetail(val arrContent: ArrayList<ModelContent>, val activity: Activ
                         when (pos) {
                             0 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_6)
+                                    activity.resources.getDimension(R.dimen.text_size_7)
                             }
                             arrContent.size - 1 -> {
                                 itemView.tv_detail_header_footer.textSize =
-                                    activity.resources.getDimension(R.dimen.text_size_5)
+                                    activity.resources.getDimension(R.dimen.text_size_6)
                             }
                         }
                     }

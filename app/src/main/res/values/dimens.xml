@@ -41,6 +41,8 @@
     <dimen name="text_size_60">60sp</dimen>
     <dimen name="text_size_65">65sp</dimen>
     <dimen name="text_size_70">70sp</dimen>
+    <dimen name="text_size_item_title_article">14sp</dimen>
+    <dimen name="text_size_item_source_article">11sp</dimen>
 
     <dimen name="dimen1dp">1dp</dimen>
     <dimen name="dimen2dp">2dp</dimen>

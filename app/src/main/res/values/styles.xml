@@ -12,7 +12,7 @@
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/black</item>
         <!-- font text for  app -->
-        <item name="android:fontFamily">chivo</item>
+        <item name="android:fontFamily">cabin</item>
 
     </style>
     <!-- Bottom Navigation -->
@@ -23,7 +23,7 @@
     <!--    TabLayout-->
     <style name="MineCustomTablayout" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/text_size_15</item>
-        <item name="android:fontFamily">@font/chivo_black</item>
+        <item name="android:fontFamily">@font/cabin_medium</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
@@ -40,7 +40,7 @@
         <item name="bgColor">#ffffff</item>
         <item name="textTitle">@color/colorPrimary</item>
         <item name="textColorGray">@color/textColorGray</item>
-        <item name="fontOther">chivo_black</item>
+        <item name="fontOther">cabin_medium</item>
 
 
     </style>
@@ -50,7 +50,7 @@
         <item name="bgColor">#000000</item>
         <item name="textTitle">@color/colorPrimary</item>
         <item name="textColorGray">@color/textColorGray</item>
-        <item name="fontOther">chivo_black</item>
+        <item name="fontOther">cabin_medium</item>
 
     </style>
 
