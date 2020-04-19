@@ -169,7 +169,7 @@ abstract class BaseActivity : AppCompatActivity() {
             action = Intent.ACTION_SEND
             putExtra(
                 Intent.EXTRA_TEXT,
-                " Hey, look this app ! \n https://play.google.com/store/apps/details?id=com.haidang.tinmoinhat"
+                " Hey, look this app ! \n  https://play.google.com/store/apps/details?id=com.haidang.tinmoinhat"
             )
             type = "text/plain"
         }
@@ -183,7 +183,7 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=com.haidang.tinmoinhat")
+                Uri.parse("https://play.google.com/store/apps/details?id=com.haidang.tinmoinhat")
             )
         )
     }
@@ -205,8 +205,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun stopApp() {
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        android.os.Process.killProcess(android.os.Process.myPid())
+        System.exit(1)
     }
 
     private var mDlg: Dialog? = null
