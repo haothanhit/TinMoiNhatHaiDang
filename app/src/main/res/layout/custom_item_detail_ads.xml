@@ -14,12 +14,13 @@
     <ImageView
         android:id="@+id/img_detail_ads"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen200dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/ad_view_item_ads"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/dimen8dp"
         android:layout_marginRight="@dimen/dimen8dp"
-        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:layout_marginTop="@dimen/dimen4dp"
         android:layout_marginBottom="@dimen/dimen4dp"
         android:visibility="gone" />
