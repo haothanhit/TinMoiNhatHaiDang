@@ -33,6 +33,8 @@
         android:layout_marginTop="@dimen/dimen4dp"
         android:layout_marginBottom="@dimen/dimen4dp"
         android:layout_marginRight="@dimen/dimen8dp"
+        android:layout_marginLeft="@dimen/dimen8dp"
+        android:textColor="?attr/textColor"
         android:lineSpacingExtra="@dimen/dimen4dp"
         android:visibility="gone" />
 </RelativeLayout>
